@@ -1,0 +1,42 @@
+.main-body {
+	background-image: url("resources/background-body.svg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.logo {
+	background-image: url("resources/logo.svg");
+	height: 100px;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+@font-face {
+	font-family: "Quicksand";
+	src: url("fonts/Quicksand-Medium.ttf");
+}
+
+@font-face {
+	font-family: "Honey";
+	src: url("fonts/HoneyScript-Light.ttf");
+}
+
+* {
+	font-family: "Quicksand";
+	font-size: 14px;
+}
+
+.title01 {
+    font-family: "Honey";
+    font-size: 14px;
+    letter-spacing: 3px;
+}
+
+.background {
+	background-image: url("resources/background.svg");
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
