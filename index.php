@@ -136,21 +136,40 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="row gap-3">
+                            <div class="row gap-0">
+                                <div class="col-8">
+                                    <input type="email" class="form-control" value="name@gmail.com" id="modalEmail" disabled />
+                                </div>
+                                <div class="col-4">
+                                    <input type="text" class="form-control" placeholder="Verification code" id="modalCode"  />
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div style="height: 16px;"></div>
+                            </div>
+                            <div class="row gap-0">
                                 <div class="col-6">
-                                    <label class="form-label">New Password</label>
+                                    <!-- <label class="form-label">New Password</label> -->
                                     <div class="input-group mb-3">
-                                        <input type="password" class="form-control" id="np" />
-                                        <button class="btn btn-outline-secondary" type="button" id="npb">
-                                            <i class="bi bi-eye"></i>
-                                        </button>
+                                        <input type="password" class="form-control" placeholder="New Password" id="modalNewPassword" />
                                     </div>
                                 </div>
+                                <div class="col-6">
+                                    <div class="input-group mb-3">
+                                        <!-- <label class="form-label">New Password</label> -->
+                                        <input type="password" class="form-control" placeholder="Confirm Password" id="modalConfPassword" />
+                                        <!-- <button class="btn btn-primary" style="opacity: .5;" type="button" id="npb">
+                                            <i class="bi bi-eye"></i>
+                                        </button> -->
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" onclick="resetPassword()" id="modalBtnReset" class="btn btn-primary">Reset Password</button>
                         </div>
                     </div>
                 </div>

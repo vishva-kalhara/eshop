@@ -1,6 +1,7 @@
 <?php
 
 require '../connection.php';
+require '../config.php';
 // require 'SMTP.php';
 // require 'PHPMailer.php';
 // require 'Exception.php';
@@ -27,12 +28,12 @@ if (isset($email)) {
         $mail->IsSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'vishvakalhara@gmail.com';
-        $mail->Password = 'xndeeebbgiggzrbf';
+        $mail->Username = fromEmail;
+        $mail->Password = appPassword;
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
-        $mail->setFrom('vishvakalhara@gmail.com', 'Reset Password');
-        $mail->addReplyTo('vishvakalhara@gmail.com', 'Reset Password');
+        $mail->setFrom(fromEmail, 'Reset Password');
+        $mail->addReplyTo(fromEmail, 'Reset Password');
         $mail->addAddress($email);
         $mail->isHTML(true);
         $mail->Subject = 'Reset Password';
@@ -44,9 +45,9 @@ if (isset($email)) {
         // echo (!extension_loaded('openssl')?"Not Available          ":"Available         ");
         // $mail->Mailer = "smtp";
         // $mail->Host = "ssl://smtp.gmail.com"; 
-
+        ob_end_clean();
         if ($mail->send()) {
-            echo ("success");
+            echo ("Email_Sent_Success");
         } else {
             echo ("Verification Code Sending Failed.");
             echo ($mail->ErrorInfo);
