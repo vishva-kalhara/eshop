@@ -98,7 +98,7 @@
                             </div>
                             <div class="col-12">
                                 <label class="col-12">Email</label>
-                                <input type="email" value="vishvakalhara@gmail.com" id="email2" placeholder="ex: johnwick@example.com" class="form-control">
+                                <input type="email" value="wishvakalhara@gmail.com" id="email2" placeholder="ex: johnwick@example.com" class="form-control">
                             </div>
                             <div class="col-12">
                                 <label class="col-12">Password</label>

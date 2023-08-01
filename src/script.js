@@ -67,5 +67,13 @@ function signIn() {
 }
 
 function forgetPassword() {
-	
+	const req = new XMLHttpRequest();
+	req.onreadystatechange = function () {
+		if ((req.readyState == 4 && req.status == 200)) {
+			console.log(req.responseText);
+		}
+	};
+
+	req.open("GET", "process/forgetPassword.php?e=" + txtemail2.value, true);
+	req.send();
 }
