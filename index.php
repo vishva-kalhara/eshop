@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="#" class="link-primary text-end">Forgot password?</a>
+                                <a href="#" onclick="forgetPassword()" class="link-primary text-end">Forgot password?</a>
                             </div>
                             <div class="col-12 col-lg-6 d-grid mt-3">
                                 <button onclick="signIn()" class="btn btn-primary">Sign in</button>

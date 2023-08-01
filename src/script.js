@@ -62,7 +62,10 @@ function signIn() {
 			console.log(req.responseText);
 		}
 	};
-
-	req.open('POST', 'process/signIn.php', true);
+	req.open("POST", "process/signIn.php", true);
 	req.send(frmData);
+}
+
+function forgetPassword() {
+	
 }
