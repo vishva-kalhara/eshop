@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./src/style.css" />
     <link rel="stylesheet" href="./resources/bootstrap/bootstrap.css" />
     <link rel="icon" href="resources/img/logo.svg" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>eShop</title>
 </head>
 
@@ -127,6 +128,33 @@
                 </div>
             </div>
             <!-- Content -->
+            <div class="modal" id="forgotPasswordModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Reset Password</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row gap-3">
+                                <div class="col-6">
+                                    <label class="form-label">New Password</label>
+                                    <div class="input-group mb-3">
+                                        <input type="password" class="form-control" id="np" />
+                                        <button class="btn btn-outline-secondary" type="button" id="npb">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="./src/script.js"></script>

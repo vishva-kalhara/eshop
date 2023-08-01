@@ -1,5 +1,6 @@
 const signupForm = document.getElementById("signupbox");
 const signinForm = document.getElementById("signinbox");
+const forgotPasswordModal = document.getElementById('forgotPasswordModal');
 
 const msg = document.getElementById("msg");
 const msgdiv = document.getElementById("msgdiv");
@@ -66,14 +67,19 @@ function signIn() {
 	req.send(frmData);
 }
 
-function forgetPassword() {
-	const req = new XMLHttpRequest();
-	req.onreadystatechange = function () {
-		if ((req.readyState == 4 && req.status == 200)) {
-			console.log(req.responseText);
-		}
-	};
+let bootstrapModal;
 
-	req.open("GET", "process/forgetPassword.php?e=" + txtemail2.value, true);
-	req.send();
+function forgetPassword() {
+	bootstrapModal = new bootstrap.Modal(forgotPasswordModal);
+	bootstrapModal.show();
+	
+	// const req = new XMLHttpRequest();
+	// req.onreadystatechange = function () {
+	// 	if ((req.readyState == 4 && req.status == 200)) {
+	// 		console.log(req.responseText);
+	// 	}
+	// };
+
+	// req.open("GET", "process/forgetPassword.php?e=" + txtemail2.value, true);
+	// req.send();
 }
