@@ -1,12 +1,12 @@
 .main-body {
-	background-image: url("resources/img/background-body.svg");
+	background-image: url("../resources/img/background-body.svg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
 }
 
 .logo {
-	background-image: url("resources/img/logo.svg");
+	background-image: url("../resources/img/logo.svg");
 	height: 100px;
 	background-position: center;
 	background-size: contain;
@@ -15,12 +15,12 @@
 
 @font-face {
 	font-family: "Quicksand";
-	src: url("resources/fonts/Quicksand-Medium.ttf");
+	src: url("../resources/fonts/Quicksand-Medium.ttf");
 }
 
 @font-face {
 	font-family: "Honey";
-	src: url("resources/fonts/HoneyScript-Light.ttf");
+	src: url("../resources/fonts/HoneyScript-Light.ttf");
 }
 
 * {
@@ -35,7 +35,7 @@
 }
 
 .background {
-	background-image: url("resources/img/background.svg");
+	background-image: url("../resources/img/background.svg");
 	background-position: center;
 	background-size: contain;
 	background-repeat: no-repeat;
