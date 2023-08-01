@@ -13,19 +13,16 @@ const txtpassword = document.getElementById("password");
 const txtmobile = document.getElementById("mobile");
 const txtgender = document.getElementById("gender");
 
+const txtemail2 = document.getElementById("email2");
+const txtpassword2 = document.getElementById("password2");
+const rememberMe = document.getElementById("rememberme");
+
 function switchScreens() {
 	signupForm.classList.toggle("d-none");
 	signinForm.classList.toggle("d-none");
 }
 
 function signUp() {
-	// alert(txtfn.value);
-	// alert(txtln.value);
-	// alert(txtemail.value);
-	// alert(txtpassword.value);
-	// alert(txtmobile.value);
-	// alert(txtgender.value);
-
 	const frmData = new FormData();
 	frmData.append("fn", txtfn.value);
 	frmData.append("ln", txtln.value);
@@ -49,10 +46,23 @@ function signUp() {
 			}
 		}
 	};
-
-	// console.log(req.readyState);
-
 	req.open("POST", "process/signUpProcess.php", true);
+	req.send(frmData);
+}
 
+function signIn() {
+	const frmData = new FormData();
+	frmData.append("email", txtemail2.value);
+	frmData.append("password", txtpassword2.value);
+	frmData.append("rememberMe", rememberMe.checked);
+
+	const req = new XMLHttpRequest();
+	req.onreadystatechange = function () {
+		if (req.readyState == 4 && req.status == 200) {
+			console.log(req.responseText);
+		}
+	};
+
+	req.open('POST', 'process/signIn.php', true);
 	req.send(frmData);
 }

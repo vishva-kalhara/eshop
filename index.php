@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-6 d-none d-lg-block background"></div>
                     <!-- SIgn up form -->
-                    <div class="col-12 col-lg-6" id="signupbox">
+                    <div class="col-12 col-lg-6 d-none" id="signupbox">
                         <div class="row g-2">
                             <!-- Title -->
                             <div class="col-12">
@@ -91,23 +91,23 @@
                     <!-- SIgn up form -->
 
                     <!-- Sign in box -->
-                    <div class="col-12 d-none col-lg-6" id="signinbox">
+                    <div class="col-12  col-lg-6" id="signinbox">
                         <div class="row g-2">
                             <div class="col-12">
                                 <p class="title02">Sign in</p>
                             </div>
                             <div class="col-12">
                                 <label class="col-12">Email</label>
-                                <input type="email" placeholder="ex: johnwick@example.com" class="form-control">
+                                <input type="email" value="vishvakalhara@gmail.com" id="email2" placeholder="ex: johnwick@example.com" class="form-control">
                             </div>
                             <div class="col-12">
                                 <label class="col-12">Password</label>
-                                <input type="email" placeholder="ex: **********" class="form-control">
+                                <input type="email" value="123456" id="password2" placeholder="ex: **********" class="form-control">
                             </div>
                             <div class="col-6">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="rememberme">
+                                    <label class="form-check-label" for="rememberme">
                                         Remember me
                                     </label>
                                 </div>
@@ -116,7 +116,7 @@
                                 <a href="#" class="link-primary text-end">Forgot password?</a>
                             </div>
                             <div class="col-12 col-lg-6 d-grid mt-3">
-                                <button class="btn btn-primary">Sign in</button>
+                                <button onclick="signIn()" class="btn btn-primary">Sign in</button>
                             </div>
                             <div class="col-12 col-lg-6 d-grid mt-3">
                                 <button onclick="switchScreens()" class="btn btn-dark">Don't have an account?</button>
