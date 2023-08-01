@@ -1,5 +1,5 @@
 <?php
-    require "connection.php";
+    require "../connection.php";
     
     $fn = $_POST["fn"];
     $ln = $_POST["ln"];

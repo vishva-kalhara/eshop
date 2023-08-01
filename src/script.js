@@ -1,8 +1,8 @@
 const signupForm = document.getElementById("signupbox");
 const signinForm = document.getElementById("signinbox");
 
-const msg = document.getElementById('msg');
-const msgdiv = document.getElementById('msgdiv');
+const msg = document.getElementById("msg");
+const msgdiv = document.getElementById("msgdiv");
 
 const btnSignUp = document.getElementById("btnSignUp");
 
@@ -39,20 +39,20 @@ function signUp() {
 	req.onreadystatechange = function () {
 		if (req.readyState == 4 && req.status == 200) {
 			let t = req.responseText;
-			if(t == 'success'){
+			if (t == "success") {
 				msg.innerHTML = t;
-				msg.className = 'alert alert-success';
-				msgdiv.className = 'd-block';	
+				msg.className = "alert alert-success";
+				msgdiv.className = "d-block";
 			} else {
 				msg.innerHTML = t;
-				msgdiv.className = 'd-block';
+				msgdiv.className = "d-block";
 			}
 		}
 	};
 
 	// console.log(req.readyState);
 
-	req.open("POST", "signUpProcess.php", true);
+	req.open("POST", "process/signUpProcess.php", true);
 
 	req.send(frmData);
 }
