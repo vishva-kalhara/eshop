@@ -2,9 +2,7 @@
 
 require '../connection.php';
 require '../config.php';
-// require 'SMTP.php';
-// require 'PHPMailer.php';
-// require 'Exception.php';
+ 
 require '../resources/php_mailer/SMTP.php';
 require '../resources/php_mailer/PHPMailer.php';
 require '../resources/php_mailer/Exception.php';
@@ -42,7 +40,7 @@ if (isset($email)) {
 
         // // $mail->CharSet = 'UTF-8';
         // $mail->SMTPKeepAlive = true;
-        // echo (!extension_loaded('openssl')?"Not Available          ":"Available         ");
+        // echo (!extension_loaded('openssl')?"Not Available":"Available");
         // $mail->Mailer = "smtp";
         // $mail->Host = "ssl://smtp.gmail.com"; 
         ob_end_clean();

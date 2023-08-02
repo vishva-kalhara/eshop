@@ -24,6 +24,7 @@ if (empty($email)) {
     if ($n == 1) {
         $data = $response->fetch_assoc();
         $_SESSION['u'] = $data;
+        ob_end_clean();
         echo ('signInSuccess');
 
         if ($rememberMe) {

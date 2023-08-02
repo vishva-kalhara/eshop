@@ -11,6 +11,7 @@ $n = $res->num_rows;
 
 if ($n == 1) {
     Database::iud("UPDATE `eshop`.`users` SET `password`='$newPassword'");
+    ob_end_clean();
     echo ("success");
 } else {
     echo ("Invalid Verification Code!");
