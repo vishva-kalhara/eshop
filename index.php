@@ -153,15 +153,18 @@
                                     <!-- <label class="form-label">New Password</label> -->
                                     <div class="input-group mb-3">
                                         <input type="password" class="form-control" placeholder="New Password" id="modalNewPassword" />
+                                        <button class="btn btn-primary" onclick="showHidePassword()" style="opacity: .5;" type="button" id="btnPass1">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="input-group mb-3">
                                         <!-- <label class="form-label">New Password</label> -->
                                         <input type="password" class="form-control" placeholder="Confirm Password" id="modalConfPassword" />
-                                        <!-- <button class="btn btn-primary" style="opacity: .5;" type="button" id="npb">
+                                        <button class="btn btn-primary" style="opacity: .5;" type="button" id="btnPass2">
                                             <i class="bi bi-eye"></i>
-                                        </button> -->
+                                        </button>
                                     </div>
                                 </div>
 

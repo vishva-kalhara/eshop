@@ -25,8 +25,7 @@ if (empty($email)) {
         $data = $response->fetch_assoc();
         $_SESSION['u'] = $data;
         ob_end_clean();
-        echo ('signInSuccess');
-
+        
         if ($rememberMe) {
             setcookie('email', $email, time() + (60 * 60 * 24 * 30));
             setcookie('password', $password, time() + (60 * 60 * 24 * 30));
@@ -34,6 +33,7 @@ if (empty($email)) {
             setcookie('email', "", -1);
             setcookie('password', '', -1);
         }
+        echo ('signInSuccess');
     } else {
         echo ("Email and password are mismatching");
     }

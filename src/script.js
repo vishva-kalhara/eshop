@@ -53,7 +53,7 @@ function signUp() {
 			}
 		}
 	};
-	req.open("POST", "process/signUpProcess.php", true);
+	req.open("POST", "./process/signUpProcess.php", true);
 	req.send(frmData);
 }
 
@@ -67,54 +67,67 @@ function signIn() {
 	req.onreadystatechange = function () {
 		if (req.readyState == 4 && req.status == 200) {
 			console.log(req.responseText);
+			if (req.responseText == "signInSuccess") {
+				window.location = "home.php";
+			}
 		}
 	};
-	req.open("POST", "process/signIn.php", true);
+	req.open("POST", "./process/signIn.php", true);
 	req.send(frmData);
 }
 
 let bootstrapModal;
 
 function forgetPassword() {
-	const req = new XMLHttpRequest();
-	req.onreadystatechange = function () {
-		if (req.readyState == 4 && req.status == 200) {
-			const resText = req.responseText;
-			// console.log(resText)
-			if (resText == "Email_Sent_Success") {
-				// console.log(req.responseText);
-				bootstrapModal = new bootstrap.Modal(forgotPasswordModal);
-				modalEmail.value = txtemail2.value;
-				bootstrapModal.show();
-			}
-		}
-	};
+	// const req = new XMLHttpRequest();
+	// req.onreadystatechange = function () {
+	// 	if (req.readyState == 4 && req.status == 200) {
+	// 		const resText = req.responseText;
+	// 		// console.log(resText)
+	// 		if (resText == "Email_Sent_Success") {
+	// 			// console.log(req.responseText);
+	// 			bootstrapModal = new bootstrap.Modal(forgotPasswordModal);
+	// 			modalEmail.value = txtemail2.value;
+	// 			bootstrapModal.show();
+	// 		}
+	// 	}
+	// };
 
-	req.open("GET", "process/forgetPassword.php?e=" + txtemail2.value, true);
-	req.send();
-	// bootstrapModal = new bootstrap.Modal(forgotPasswordModal);
-	// bootstrapModal.show();
+	// req.open("GET", "./process/forgetPassword.php?e=" + txtemail2.value, true);
+	// req.send();
+	bootstrapModal = new bootstrap.Modal(forgotPasswordModal);
+	bootstrapModal.show();
 }
 
 function resetPassword() {
-	if(modalNewPassword.value == modalConfPassword.value) {
-		
+	if (modalNewPassword.value == modalConfPassword.value) {
 		const frmData = new FormData();
-		frmData.append('email', modalEmail.value);
-		frmData.append('code', modalCode.value);
-		frmData.append('newPassword', modalNewPassword.value);
+		frmData.append("email", modalEmail.value);
+		frmData.append("code", modalCode.value);
+		frmData.append("newPassword", modalNewPassword.value);
 
 		const req = new XMLHttpRequest();
-		req.onreadystatechange = function(){
-			if(req.readyState == 4 && req.status == 200) {
-				console.log(req.responseText);
+		req.onreadystatechange = function () {
+			if (req.readyState == 4 && req.status == 200) {
+				// console.log(req.responseText);
+				// bootstrapModal.hide();
+				alert("Password Reset Successful");
 			}
-		}
+		};
 
-		req.open("POST","process/resetPassword.php", true);
+		req.open("POST", "./process/resetPassword.php", true);
 		req.send(frmData);
-
 	} else {
-		alert("Mismatching Passwords")
+		alert("Mismatching Passwords");
 	}
 }
+
+const showHidePassword = function (btn, target) {
+	if (modalNewPassword.type == "password") {
+		modalNewPassword.type = "text";
+	} else if (modalNewPassword.type == "text") {
+		modalNewPassword.type = "password";
+	}
+};
+
+console.log('gg');
