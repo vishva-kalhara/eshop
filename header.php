@@ -30,13 +30,13 @@
                             My eShop
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">My Profile</a></li>
-                            <li><a class="dropdown-item" href="#">My Sellings</a></li>
-                            <li><a class="dropdown-item" href="#">My Products</a></li>
-                            <li><a class="dropdown-item" href="#">Watchlist</a></li>
-                            <li><a class="dropdown-item" href="#">Purchased History</a></li>
-                            <li><a class="dropdown-item" href="#">Messages</a></li>
-                            <li><a class="dropdown-item" href="#">Contact Admin</a></li>
+                            <li><a class="dropdown-item" href="#profile">My Profile</a></li>
+                            <li><a class="dropdown-item" href="#sellings">My Sellings</a></li>
+                            <li><a class="dropdown-item" href="#products">My Products</a></li>
+                            <li><a class="dropdown-item" href="#watchlist">Watchlist</a></li>
+                            <li><a class="dropdown-item" href="#purchasedHistory">Purchased History</a></li>
+                            <li><a class="dropdown-item" href="#messages">Messages</a></li>
+                            <li><a class="dropdown-item" href="#contact">Contact Admin</a></li>
                         </ul>
                     </div>
 
