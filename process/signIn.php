@@ -18,7 +18,7 @@ if (empty($email)) {
 } else if (strlen($password) < 5 || strlen($password) > 20) {
     echo ('Pasword can contain only 5 to 20 characters');
 } else {
-    $response = Database::search("SELECT * FROM `eshop`.`users` WHERE `email`='" . $email . "' AND `password`='" . $password . "'");
+    $response = Database::search("SELECT * FROM `eshop`.`user` WHERE `email`='" . $email . "' AND `password`='" . $password . "'");
     $n = $response->num_rows;
 
     if ($n == 1) {

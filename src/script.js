@@ -49,6 +49,7 @@ function signUp() {
 				msgdiv.className = "d-block";
 			} else {
 				msg.innerHTML = t;
+				console.log(t);
 				msgdiv.className = "d-block";
 			}
 		}
@@ -130,4 +131,4 @@ const showHidePassword = function (btn, target) {
 	}
 };
 
-console.log('gg');
+console.log("gg");

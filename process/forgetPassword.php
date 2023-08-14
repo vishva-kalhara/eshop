@@ -19,7 +19,7 @@ if (isset($email)) {
     if ($n == 1) {
         $code = uniqid(); // Create the Code
 
-        Database::iud("UPDATE `eshop`.`users` SET `verification_code`='$code' WHERE `email`='$email'"); 
+        Database::iud("UPDATE `eshop`.`user` SET `verification_code`='$code' WHERE `email`='$email'"); 
 
         $mail = new PHPMailer;
         $mail->IsSMTP();

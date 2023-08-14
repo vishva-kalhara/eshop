@@ -35,7 +35,7 @@ if (empty($fn)) {
 } elseif ($gender == 0) {
     echo ("Please select the gender");
 } else {
-    $rs = Database::search("SELECT * FROM `eshop`.`users` WHERE `email`='" . $email . "' OR `mobile`='" . $mobile . "'");
+    $rs = Database::search("SELECT * FROM `eshop`.`user` WHERE `email`='" . $email . "' OR `mobile`='" . $mobile . "'");
     $n = $rs->num_rows;
     if ($n > 0) {
         echo ("User with the same Mobile number or Email already exists.");
@@ -45,7 +45,7 @@ if (empty($fn)) {
         $d->setTimezone($tz);
         $date = $d->format("Y-m-d H-i-s");
 
-        Database::iud("INSERT INTO `eshop`.`users` (`fname`,`lname`,`email`,`password`,`mobile`,`join_date`,`status`,`gender_id`) VALUES ('" . $fn . "','" . $ln . "','" . $email . "','" . $password . "','" . $mobile . "','" . $date . "','1','" . $gender . "')");
+        Database::iud("INSERT INTO `eshop`.`user` (`fname`,`lname`,`email`,`password`,`mobile`,`join_date`,`status`,`gender_id`) VALUES ('" . $fn . "','" . $ln . "','" . $email . "','" . $password . "','" . $mobile . "','" . $date . "','1','" . $gender . "')");
         ob_end_clean();
         echo ("success");
     }

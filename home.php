@@ -1,3 +1,10 @@
+<?php
+require "connection.php";
+session_start();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,11 +36,16 @@
                             <input type="text" class="form-control" aria-label="Text input with dropdown button" />
 
                             <select class="form-select" style="max-width: 250px;">
-                                <option value="0">All Categories</option>
-                                <option value="1">Smart Phones</option>
-                                <option value="2">Laptops</option>
-                                <option value="3">Cameras</option>
-                                <option value="4">Drones</option>
+                                <?php
+                                $rs = Database::search("SELECT * FROM eshop.category");
+                                $n = $rs->num_rows;
+                                for ($i = 0; $i < $n; $i++) {
+                                    $d = $rs->fetch_assoc();
+                                ?>
+                                    <option value="<?php echo $d["cat_id"]?>"><?php echo $d["cat_name"]?></option>
+                                <?php
+                                }
+                                ?>
                             </select>
 
                         </div>
@@ -94,6 +106,25 @@
                     </div>
 
                     <!-- Carousel -->
+
+                    <?php
+                        $category_res = Database::search("SELECT * FROM `eshop`.`category`");
+                        $category_n = $category_res->num_rows;
+                        for ($c=0; $c < $category_n; $c++) { 
+                            $cat_data = $category_res->fetch_assoc();
+                            ?>
+                            <!-- Category Names -->
+                            <div class="col-12 mt-3 mb-3">
+                                <a href="#" class="text-decoarion-none text-dark fs-3 fw-bold"><?php echo $cat_data["cat_name"]?></a>
+                                <a href="#" class="text-decoarion-none text-dark fs-6">See All &nbsp; &rarr;</a>
+                            </div>
+                            <!-- Category Names -->
+                            
+                            <?php
+                        }
+
+                    ?>
+
 
                 </div>
             </div>
