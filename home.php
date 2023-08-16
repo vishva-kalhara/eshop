@@ -42,7 +42,7 @@ session_start();
                                 for ($i = 0; $i < $n; $i++) {
                                     $d = $rs->fetch_assoc();
                                 ?>
-                                    <option value="<?php echo $d["cat_id"]?>"><?php echo $d["cat_name"]?></option>
+                                    <option value="<?php echo $d["cat_id"] ?>"><?php echo $d["cat_name"] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -108,21 +108,38 @@ session_start();
                     <!-- Carousel -->
 
                     <?php
-                        $category_res = Database::search("SELECT * FROM `eshop`.`category`");
-                        $category_n = $category_res->num_rows;
-                        for ($c=0; $c < $category_n; $c++) { 
-                            $cat_data = $category_res->fetch_assoc();
-                            ?>
-                            <!-- Category Names -->
-                            <div class="col-12 mt-3 mb-3">
-                                <a href="#" class="text-decoarion-none text-dark fs-3 fw-bold"><?php echo $cat_data["cat_name"]?></a>
-                                <a href="#" class="text-decoarion-none text-dark fs-6">See All &nbsp; &rarr;</a>
-                            </div>
-                            <!-- Category Names -->
-                            
-                            <?php
-                        }
+                    $category_res = Database::search("SELECT * FROM `eshop`.`category`");
+                    $category_n = $category_res->num_rows;
+                    for ($c = 0; $c < $category_n; $c++) {
+                        $cat_data = $category_res->fetch_assoc();
+                    ?>
+                        <!-- Category Names -->
+                        <div class="col-12 mt-3 mb-3">
+                            <a href="#" class="text-decoarion-none text-dark fs-3 fw-bold"><?php echo $cat_data["cat_name"] ?></a>
+                            <a href="#" class="text-decoarion-none text-dark fs-6">See All &nbsp; &rarr;</a>
+                        </div>
+                        <!-- Category Names -->
 
+
+                        <div class="col-12 mb-3">
+                            <div class="row border borderprimary">
+                                <div class="col-12">
+                                    <div class="row justify-content-center gap-2">
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="..." class="card-img-top" alt="...">
+                                            <div class="card-body">
+                                                <h5 class="card-title">iPhone 12</h5>
+                                                <p class="card-text">New</p>
+                                                <a href="#" class="btn btn-primary">LKR 239,000</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+
+                    }
                     ?>
 
 
