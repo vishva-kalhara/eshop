@@ -1,0 +1,8 @@
+                                        <!-- <?php
+                                        $product_rs = Database::search("SELECT * FROM `eshop`.`product` WHERE `category_id`=" . $cat_data["id"] . " AND `status_id`=1 ORDER BY `datetime_added` DESC LIMIT 4 OFFSET 0");
+                                        $product_num = $product_rs->num_rows;
+
+                                        for ($x = 0; $x < $product_num; $x++) {
+                                            $product_data = $product_rs->fetch_assoc();
+
+                                        ?> -->

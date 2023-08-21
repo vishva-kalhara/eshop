@@ -19,9 +19,9 @@ session_start();
             <div class="offset-lg-1 col-12 col-lg-3 align-self-start mt-2">
 
             <?php
-                if($_SESSION[""]){
+                // if($_SESSION["email"]){
                     
-                }
+                // }
             ?>
                 <span class="text-lg-start"><b>Welcome </b>Wishva</span> |
                 <span class="text-lg-start fw-bold">Sign Out</span> |
