@@ -75,7 +75,7 @@ function signIn() {
 				window.location = "home.php";
 			} else {
 				msgSignIn.innerHTML = t;
-				console.log(t);
+				console.error(t);
 				msgdivSignIn.className = "d-block";
 			}
 		}
@@ -86,9 +86,15 @@ function signIn() {
 
 let bootstrapModal;
 
-const forgetPassword =  function () {
+const forgetPassword = function () {
 	const req = new XMLHttpRequest();
-	 req.onreadystatechange = function () {
+	req.onreadystatechange = function () {
+		if (req.readyState < 4) {
+			msgSignIn.innerHTML = "Plase wait for a moment";
+
+			msgSignIn.className = "alert alert-success";
+			msgdivSignIn.className = "d-block";
+		}
 		if (req.readyState == 4 && req.status == 200) {
 			const resText = req.responseText;
 			// console.log(resText)
@@ -97,14 +103,12 @@ const forgetPassword =  function () {
 				bootstrapModal = new bootstrap.Modal(forgotPasswordModal);
 				modalEmail.value = txtemail2.value;
 				bootstrapModal.show();
-			} else {
-
 			}
 		}
 	};
 
-	 req.open("GET", "./process/forgetPassword.php?e=" + txtemail2.value, true);
-	 req.send();
+	req.open("GET", "./process/forgetPassword.php?e=" + txtemail2.value, true);
+	req.send();
 	//  bootstrapModal = new bootstrap.Modal(forgotPasswordModal);
 	// await bootstrapModal.show();
 };
