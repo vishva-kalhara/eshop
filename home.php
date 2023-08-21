@@ -113,11 +113,40 @@ require "connection.php";
                         $cat_data = $category_res->fetch_assoc();
                     ?>
                         <!-- Category Names -->
-                        <div class="col-12 mt-3 mb-3">
+                        <div class="col-12 mt-3 mb-3 " style="background-color: antiquewhite;">
                             <a href="#" class="text-decoarion-none text-dark fs-3 fw-bold"><?php echo $cat_data["cat_name"] ?></a>
                             <a href="#" class="text-decoarion-none text-dark fs-6">See All &nbsp; &rarr;</a>
                         </div>
                         <!-- Category Names -->
+                        <div class="row" style="background-color: aquamarine; ">
+                            <?php
+                            // $cat_product_res = Database::search("SELECT * FROM `eshop`.`product` WHERE `category_cat_id`=1 LIMIT 4");
+                            $cat_product_res = Database::search("SELECT * FROM `eshop`.`product` WHERE `category_cat_id`=" . $cat_data["cat_id"] . " LIMIT 4");
+                            $cat_product_n = $cat_product_res->num_rows;
+                            $cat_product_data = $cat_product_res->fetch_assoc();
+                            for ($i = 0; $i < $cat_product_n; $i++) {
+                            ?>
+                                <div style=" margin-top: 24px; margin-left: 20px; max-width: 260px; background-color: white; border-radius: 10px; padding: 24px; box-sizing: border-box;">
+                                    <div style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 500; color: #1e1e1e;">HP Pavilion Laptop 15t-eg300, 15.6"</div>
+                                    <div style="min-width: 100%; display: flex; justify-content: center  ; margin-top: 20px;">
+                                        <img src="./resources/img/product_img/p6.png" alt="">
+                                    </div>
+                                    <div style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; color: #1e1e1e; margin-top: 20px; min-width: 100%; display: flex; justify-content: center;">LKR 235,000</div>
+                                    <div style="min-width: 100%; min-height: 1px; max-height: 1px; background-color: #E9E9E9; margin-top: 20px;"></div>
+                                    <div style="min-width: 100%; display: flex; justify-content: center; margin-top: 20px;">
+                                        <button style="border: none; background-color: transparent;">Add to cart</button>
+                                        <button style="border: none; background-color: transparent;">Buy</button>
+                                    </div>
+                                </div>
+
+                            <?php
+                            }
+                            ?>
+                        </div>
+                        <!-- <h1>2</h1> -->
+
+                        <?php
+                        ?>
 
                     <?php
                     }
