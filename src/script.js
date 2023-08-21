@@ -4,6 +4,8 @@ const forgotPasswordModal = document.getElementById("forgotPasswordModal");
 
 const msg = document.getElementById("msg");
 const msgdiv = document.getElementById("msgdiv");
+const msgSignIn = document.getElementById("msgSignIn");
+const msgdivSignIn = document.getElementById("msgdivSignIn");
 
 const btnSignUp = document.getElementById("btnSignUp");
 
@@ -67,9 +69,14 @@ function signIn() {
 	const req = new XMLHttpRequest();
 	req.onreadystatechange = function () {
 		if (req.readyState == 4 && req.status == 200) {
-			console.log(req.responseText);
-			if (req.responseText == "signInSuccess") {
+			const t = req.responseText;
+			console.log(t);
+			if (t == "signInSuccess") {
 				window.location = "home.php";
+			} else {
+				msgSignIn.innerHTML = t;
+				console.log(t);
+				msgdivSignIn.className = "d-block";
 			}
 		}
 	};
@@ -79,26 +86,28 @@ function signIn() {
 
 let bootstrapModal;
 
-function forgetPassword() {
-	// const req = new XMLHttpRequest();
-	// req.onreadystatechange = function () {
-	// 	if (req.readyState == 4 && req.status == 200) {
-	// 		const resText = req.responseText;
-	// 		// console.log(resText)
-	// 		if (resText == "Email_Sent_Success") {
-	// 			// console.log(req.responseText);
-	// 			bootstrapModal = new bootstrap.Modal(forgotPasswordModal);
-	// 			modalEmail.value = txtemail2.value;
-	// 			bootstrapModal.show();
-	// 		}
-	// 	}
-	// };
+const forgetPassword =  function () {
+	const req = new XMLHttpRequest();
+	 req.onreadystatechange = function () {
+		if (req.readyState == 4 && req.status == 200) {
+			const resText = req.responseText;
+			// console.log(resText)
+			if (resText == "Email_Sent_Success") {
+				// console.log(req.responseText);
+				bootstrapModal = new bootstrap.Modal(forgotPasswordModal);
+				modalEmail.value = txtemail2.value;
+				bootstrapModal.show();
+			} else {
 
-	// req.open("GET", "./process/forgetPassword.php?e=" + txtemail2.value, true);
-	// req.send();
-	bootstrapModal = new bootstrap.Modal(forgotPasswordModal);
-	bootstrapModal.show();
-}
+			}
+		}
+	};
+
+	 req.open("GET", "./process/forgetPassword.php?e=" + txtemail2.value, true);
+	 req.send();
+	//  bootstrapModal = new bootstrap.Modal(forgotPasswordModal);
+	// await bootstrapModal.show();
+};
 
 function resetPassword() {
 	if (modalNewPassword.value == modalConfPassword.value) {

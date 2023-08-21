@@ -13,7 +13,7 @@ $email = $_GET["e"];
 
 if (isset($email)) {
 
-    $response = Database::search("SELECT * FROM `eshop`.`users` WHERE `email`='$email'");
+    $response = Database::search("SELECT * FROM `eshop`.`user` WHERE `email`='$email'");
     $n = $response->num_rows;
 
     if ($n == 1) {

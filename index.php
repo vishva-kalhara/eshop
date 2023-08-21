@@ -97,6 +97,9 @@
                             <div class="col-12">
                                 <p class="title02">Sign in</p>
                             </div>
+                            <div class="col-12 d-none" id="msgdivSignIn">
+                                <div class="alert alert-danger" id="msgSignIn" role="alert"></div>
+                            </div>
                             <div class="col-12">
                                 <label class="col-12">Email</label>
                                 <input type="email" value="wishvakalhara@gmail.com" id="email2" placeholder="ex: johnwick@example.com" class="form-control">
@@ -141,7 +144,7 @@
                                     <input type="email" class="form-control" value="name@gmail.com" id="modalEmail" disabled />
                                 </div>
                                 <div class="col-4">
-                                    <input type="text" class="form-control" placeholder="Verification code" id="modalCode"  />
+                                    <input type="text" class="form-control" placeholder="Verification code" id="modalCode" />
                                 </div>
 
                             </div>
@@ -174,6 +177,7 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" onclick="resetPassword()" id="modalBtnReset" class="btn btn-primary">Reset Password</button>
                         </div>
+                        
                     </div>
                 </div>
             </div>

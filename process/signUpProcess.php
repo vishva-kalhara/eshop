@@ -45,7 +45,7 @@ if (empty($fn)) {
         $d->setTimezone($tz);
         $date = $d->format("Y-m-d H-i-s");
 
-        Database::iud("INSERT INTO `eshop`.`user` (`fname`,`lname`,`email`,`password`,`mobile`,`join_date`,`status`,`gender_id`) VALUES ('" . $fn . "','" . $ln . "','" . $email . "','" . $password . "','" . $mobile . "','" . $date . "','1','" . $gender . "')");
+        Database::iud("INSERT INTO `eshop`.`user` (`fname`,`lname`,`email`,`password`,`mobile`,`joindate`,`status`,`gender_id`) VALUES ('" . $fn . "','" . $ln . "','" . $email . "','" . $password . "','" . $mobile . "','" . $date . "','1','" . $gender . "')");
         ob_end_clean();
         echo ("success");
     }

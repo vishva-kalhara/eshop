@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+session_start();
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +17,12 @@
         <div class="row mt-1 mb-1">
 
             <div class="offset-lg-1 col-12 col-lg-3 align-self-start mt-2">
+
+            <?php
+                if($_SESSION[""]){
+                    
+                }
+            ?>
                 <span class="text-lg-start"><b>Welcome </b>Wishva</span> |
                 <span class="text-lg-start fw-bold">Sign Out</span> |
                 <span class="text-lg-start fw-bold">Help and Contact</span>
