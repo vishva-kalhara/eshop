@@ -23,7 +23,7 @@ require "connection.php";
 
             <hr />
 
-            <div class="col-12 justify-content-center">
+            <!-- <div class="col-12 justify-content-center">
                 <div class="row mb-3">
 
                     <div class="offset-4 offset-lg-1 col-4 col-lg-1 logo" style="height: 60px;"></div>
@@ -63,13 +63,13 @@ require "connection.php";
                 </div>
             </div>
 
-            <hr />
+            <hr /> -->
 
-            <div class="col-12" id="basicSearchResult">
-                <div class="row">
+            <div class="col-12" id="basicSearchResult" >
+                <div class="row" >
 
                     <!-- Carousel -->
-
+<!-- 
                     <div id="carouselExampleCaptions" class="offset-2 col-8 carousel slide carousel-fade" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -103,9 +103,37 @@ require "connection.php";
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
+                    </div> -->
+
+                    <div id="carouselExampleCaptions" class=" col-12 carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="2500" style="background-color: antiquewhite;">
+                                <img src="./resources/img/carausal/banner1.svg"  class="d-block wsh-banner" />
+                            </div>
+                            <div class="carousel-item" data-bs-interval="2500">
+                                <img src="./resources/img/carausal/banner2.svg" class="d-block wsh-banner" />
+                            </div>
+                            <div class="carousel-item" data-bs-interval="2500">
+                                <img src="./resources/img/carausal/banner3.svg" class="d-block wsh-banner" />
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
 
                     <!-- Carousel -->
+                    <div style="height: 40px;"></div>
 
                     <?php
                     $category_res = Database::search("SELECT * FROM `eshop`.`category`");
@@ -131,14 +159,19 @@ require "connection.php";
                                 $cat_product_n = $cat_product_res->num_rows;
                                 for ($i = 0; $i < $cat_product_n; $i++) {
                                     $cat_product_data = $cat_product_res->fetch_assoc();
-                                    $model_name_res =  Database::search("SELECT * FROM `eshop`.`model` WHERE `model_id` IN (SELECT `model_model_id` FROM `eshop`.`model_has_brand` WHERE `id` IN (SELECT `model_has_brand_id` FROM `eshop`.`product` WHERE `id`=1));");
+
+                                    $model_name_res =  Database::search("SELECT * FROM `eshop`.`model` WHERE `model_id` IN (SELECT `model_model_id` FROM `eshop`.`model_has_brand` WHERE `id` IN (SELECT `model_has_brand_id` FROM `eshop`.`product` WHERE `id`=".$cat_product_data["id"]."));");
                                     $model_name_data = $model_name_res->fetch_assoc();
+
+                                    $img_path_res = Database::search("SELECT * FROM `eshop`.`product_img` WHERE `product_id` =".$cat_product_data["id"]."");
+                                    $img_path_data = $img_path_res->fetch_assoc();
                                 ?>
                                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
 
                                         <div class="wsh-card-back">
                                             <div class="wsh-card-img-back">
-                                                <img class="wsh-card-img" src="./resources/img/product_img/p6.svg" alt="" />
+                                                <!-- <img class="wsh-card-img" src="http://localhost/eshop/resources/img/product_img/p7.svg" alt="" /> -->
+                                                <img class="wsh-card-img"  src="<?php echo $img_path_data["img_path"]?>" alt="" />
                                             </div>
                                             <div class="wsh-card-title"><?php echo $cat_product_data["title"] ?></div>
                                             <div class="wsh-card-model-name"><?php echo $model_name_data["model_name"]; ?></div>
@@ -147,7 +180,7 @@ require "connection.php";
                                             <div class="wsh-card-devider"></div>
 
                                             <div class="wsh-card-footer">
-                                                <button class="wsh-btn " id="btn-like" style=""><img src="./resources/img/icons/heart.svg" alt="" style="width: 18px;"></button>
+                                                <button class="wsh-btn " id="btn-like" ><img src="./resources/img/icons/heart.svg" alt="" style="width: 18px;"></button>
                                                 <button class="wsh-btn wsh-elevated-btn">Add to Cart</button>
                                                 <button class="wsh-btn wsh-text-btn" id="btn-buy">Buy</button>
                                             </div>

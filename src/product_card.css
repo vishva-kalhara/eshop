@@ -76,6 +76,8 @@
 .wsh-card-img {
 	display: block;
 	max-width: 160px;
+    max-height: 115px;
+    mix-blend-mode: multiply;
 }
 
 .wsh-card-title {

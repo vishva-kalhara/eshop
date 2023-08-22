@@ -9,20 +9,21 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./resources/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="./resources/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="./src/style.css">
 </head>
 
 <body>
-    <div class="col-12">
+    <!-- <div class="col-12">
         <div class="row mt-1 mb-1">
 
             <div class="offset-lg-1 col-12 col-lg-3 align-self-start mt-2">
 
-            <?php
+            
                 // if($_SESSION["email"]){
                     
                 // }
-            ?>
+            
                 <span class="text-lg-start"><b>Welcome </b>Wishva</span> |
                 <span class="text-lg-start fw-bold">Sign Out</span> |
                 <span class="text-lg-start fw-bold">Help and Contact</span>
@@ -56,9 +57,42 @@ session_start();
             </div>
 
         </div>
-    </div>
-    <script src="./resources/bootstrap/bootstrap.js"></script>
-    <script src="./resources/bootstrap/bootstrap.bundle.js"></script>
+    </div> -->
+    <nav class="navbar navbar-light navbar-expand-md align-items-center" style="height: 64px;">
+        <div class="container-fluid">
+            <img class="navbar-brand" src="./resources/img/logo.svg" style="max-width: 40px; margin-left: 30px;" alt="">
+            <!-- <a class="navbar-brand" href="#">Brand</a> -->
+            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+                <span class="visually-hidden">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div style="background-color: white;" class="collapse navbar-collapse justify-content-between align-items-center" id="navcol-1">
+                <label class="form-label" style="margin-left: 10px; color: #919191; line-height:16px; font-size: 13px; margin-top: 4px; font-weight: 500;"> Hello <span style="color: #1E1E1E; font-size: 14px; font-weight: 600;">wishvakalhara@gmail.com</span></label>
+                <ul class="navbar-nav justify-content-center" style="width:100%">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">First Item</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Second Item</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link justify-content-center" href="#">Third Item</a>
+                    </li>
+                </ul>
+                <div class="dropdown justify-content-center" style="margin-right:30px;">
+                    <a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" style="color: #1E1E1E; font-size: 16px; font-weight: 600; text-underline-offset: 3px;" href="#">My eShop </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">First Item</a>
+                        <a class="dropdown-item" href="#">Second Item</a>
+                        <a class="dropdown-item" href="#">Third Item</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- <script src="./resources/bootstrap/bootstrap.js"></script>
+    <script src="./resources/bootstrap/bootstrap.bundle.js"></script> -->
+    <script src="./resources/bootstrap/bootstrap.min.js"></script>
     <script src="./src/script.js"></script>
 </body>
 

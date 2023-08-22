@@ -5,6 +5,10 @@
 	background-position: center;
 }
 
+body{
+	margin: 0;
+}
+
 .logo {
 	background-image: url("../resources/img/logo.svg");
 	height: 100px;
@@ -71,4 +75,8 @@
 .poster-caption-1{
     margin-bottom: 70px;
     margin-right: 280px;
+}
+
+.wsh-banner{
+	width: 100vw;
 }
