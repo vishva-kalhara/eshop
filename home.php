@@ -10,6 +10,7 @@ require "connection.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./resources/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./src/product_card.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="icon" href="./resources/img/logo.svg">
     <title>eShop | Home</title>
@@ -112,39 +113,56 @@ require "connection.php";
                     for ($c = 0; $c < $category_n; $c++) {
                         $cat_data = $category_res->fetch_assoc();
                     ?>
+
                         <!-- Category Names -->
-                        <div class="col-12 mt-3 mb-3 " style="background-color: antiquewhite;">
-                            <a href="#" class="text-decoarion-none text-dark fs-3 fw-bold"><?php echo $cat_data["cat_name"] ?></a>
-                            <a href="#" class="text-decoarion-none text-dark fs-6">See All &nbsp; &rarr;</a>
+                        <div class="row justify-content-center d-flex" style="margin-top: 40px;">
+                            <div style="display: flex;  justify-content: center; align-items: end;" class="col-12 ">
+                                <div style="color: #9D9D9D;font-family: Poppins;font-size:24px;font-style: normal;font-weight: 600;line-height: normal;">Shop</div>
+                                <div style="width: 8px;"></div>
+                                <div style="color: #1e1e1e;font-family: Poppins;font-size:24px;font-style: normal;font-weight: 600;line-height: normal;"><?php echo $cat_data["cat_name"] ?></div>
+                            </div>
                         </div>
                         <!-- Category Names -->
-                        <div class="row" style="background-color: aquamarine; ">
-                            <?php
-                            // $cat_product_res = Database::search("SELECT * FROM `eshop`.`product` WHERE `category_cat_id`=1 LIMIT 4");
-                            $cat_product_res = Database::search("SELECT * FROM `eshop`.`product` WHERE `category_cat_id`=" . $cat_data["cat_id"] . " LIMIT 4");
-                            $cat_product_n = $cat_product_res->num_rows;
-                            $cat_product_data = $cat_product_res->fetch_assoc();
-                            for ($i = 0; $i < $cat_product_n; $i++) {
-                            ?>
-                                <div style=" margin-top: 24px; margin-left: 20px; max-width: 260px; background-color: white; border-radius: 10px; padding: 24px; box-sizing: border-box;">
-                                    <div style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 500; color: #1e1e1e;">HP Pavilion Laptop 15t-eg300, 15.6"</div>
-                                    <div style="min-width: 100%; display: flex; justify-content: center  ; margin-top: 20px;">
-                                        <img src="./resources/img/product_img/p6.png" alt="">
-                                    </div>
-                                    <div style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; color: #1e1e1e; margin-top: 20px; min-width: 100%; display: flex; justify-content: center;">LKR 235,000</div>
-                                    <div style="min-width: 100%; min-height: 1px; max-height: 1px; background-color: #E9E9E9; margin-top: 20px;"></div>
-                                    <div style="min-width: 100%; display: flex; justify-content: center; margin-top: 20px;">
-                                        <button style="border: none; background-color: transparent;">Add to cart</button>
-                                        <button style="border: none; background-color: transparent;">Buy</button>
-                                    </div>
-                                </div>
+                        <div class="container wsh-product-container" style="max-width: 1100px; ">
+                            <div class="row justify-content-between" >
+                                <?php
+                                // $cat_product_res = Database::search("SELECT * FROM `eshop`.`product` WHERE `category_cat_id`=1 LIMIT 4");
+                                $cat_product_res = Database::search("SELECT * FROM `eshop`.`product` WHERE `category_cat_id`=" . $cat_data["cat_id"] . " LIMIT 4");
+                                $cat_product_n = $cat_product_res->num_rows;
+                                for ($i = 0; $i < $cat_product_n; $i++) {
+                                    $cat_product_data = $cat_product_res->fetch_assoc();
+                                    $model_name_res =  Database::search("SELECT * FROM `eshop`.`model` WHERE `model_id` IN (SELECT `model_model_id` FROM `eshop`.`model_has_brand` WHERE `id` IN (SELECT `model_has_brand_id` FROM `eshop`.`product` WHERE `id`=1));");
+                                    $model_name_data = $model_name_res->fetch_assoc();
+                                ?>
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
 
-                            <?php
-                            }
-                            ?>
+                                        <div class="wsh-card-back">
+                                            <div class="wsh-card-img-back">
+                                                <img class="wsh-card-img" src="./resources/img/product_img/p6.svg" alt="" />
+                                            </div>
+                                            <div class="wsh-card-title"><?php echo $cat_product_data["title"] ?></div>
+                                            <div class="wsh-card-model-name"><?php echo $model_name_data["model_name"]; ?></div>
+                                            <div class="wsh-card-price">LKR <?php echo $cat_product_data["price"] ?></div>
+
+                                            <div class="wsh-card-devider"></div>
+
+                                            <div class="wsh-card-footer">
+                                                <button class="wsh-btn " id="btn-like" style=""><img src="./resources/img/icons/heart.svg" alt="" style="width: 18px;"></button>
+                                                <button class="wsh-btn wsh-elevated-btn">Add to Cart</button>
+                                                <button class="wsh-btn wsh-text-btn" id="btn-buy">Buy</button>
+                                            </div>
+
+                                            <!-- <div style="height: 10px;"></div> -->
+                                        </div>
+                                    </div>
+
+                                <?php
+                                }
+                                ?>
+                            </div>
+                            <!-- <h1>2</h1> -->
+
                         </div>
-                        <!-- <h1>2</h1> -->
-
                         <?php
                         ?>
 
