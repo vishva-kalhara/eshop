@@ -21,7 +21,7 @@ require "connection.php";
         <div class="row">
             <?php include "header.php"; ?>
 
-            <hr />
+            <!-- <hr /> -->
 
             <!-- <div class="col-12 justify-content-center">
                 <div class="row mb-3">
@@ -105,8 +105,8 @@ require "connection.php";
                         </button>
                     </div> -->
 
-                    <div id="carouselExampleCaptions" class=" col-12 carousel slide carousel-fade" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
+                    <div id="carouselExampleCaptions" class=" col-12 carousel slide carousel-fade" data-bs-ride="carousel" style="padding: 0;">
+                        <div class="carousel-indicators" >
                             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>

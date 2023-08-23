@@ -11,6 +11,7 @@ session_start();
     <link rel="stylesheet" href="./resources/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="./resources/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./src/product_card.css">
 </head>
 
 <body>
@@ -58,34 +59,25 @@ session_start();
 
         </div>
     </div> -->
-    <nav class="navbar navbar-light navbar-expand-md align-items-center" style="height: 64px;">
+    <nav class="navbar navbar-light navbar-expand-md align-items-center " style="height: 68px;">
         <div class="container-fluid">
             <img class="navbar-brand" src="./resources/img/logo.svg" style="max-width: 40px; margin-left: 30px;" alt="">
-            <!-- <a class="navbar-brand" href="#">Brand</a> -->
-            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
-                <span class="visually-hidden">Toggle navigation</span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div style="background-color: white;" class="collapse navbar-collapse justify-content-between align-items-center" id="navcol-1">
-                <label class="form-label" style="margin-left: 10px; color: #919191; line-height:16px; font-size: 13px; margin-top: 4px; font-weight: 500;"> Hello <span style="color: #1E1E1E; font-size: 14px; font-weight: 600;">wishvakalhara@gmail.com</span></label>
-                <ul class="navbar-nav justify-content-center" style="width:100%">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">First Item</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Second Item</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link justify-content-center" href="#">Third Item</a>
-                    </li>
-                </ul>
-                <div class="dropdown justify-content-center" style="margin-right:30px;">
-                    <a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" style="color: #1E1E1E; font-size: 16px; font-weight: 600; text-underline-offset: 3px;" href="#">My eShop </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">First Item</a>
+            <div class="input-group mb-3" style="max-width: 388px; margin-top: 10px;">
+                <input style="border: none; background-color: #f4f4f4; height: 40px; width: 246px;" type="text" class="form-control" placeholder="Search for products" aria-label="Search for products" aria-describedby="basic-addon2">
+                <button class="wsh-btn" style="background-color: #f4f4f4;" type="button" id="basic-addon2"><img style="width: 20px; margin-right: 5px;" src="./resources/img/icons/grid.svg" alt=""></button>
+                <button class="wsh-btn" style="background-color: #1E1E1E; color: white; padding: 10px 16px 10px 16px; border-radius: 0 10px 10px 0;" type="button" id="basic-addon2">Search</button>
+            </div>
+            <div class="d-flex">
+                <div class="dropdown justify-content-end d-flex" style=" padding:8px 16px 8px 16px; border-radius: 8px;">
+                    <a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" style="color: #1E1E1E; font-size: 14px; font-weight: 600; text-decoration: none;" href="#">My eShop </a>
+                    <div class="dropdown-menu" style="margin-right: 10px;">
+                        <a class="dropdown-item" href="#">My Profile</a>
                         <a class="dropdown-item" href="#">Second Item</a>
                         <a class="dropdown-item" href="#">Third Item</a>
                     </div>
+                </div>
+                <div style="color: #1E1E1E; font-size: 14px; font-weight: 600; display: flex; background-color: #f4f4f4; padding:8px 16px 8px 16px; border-radius: 8px;">
+                    wishva
                 </div>
             </div>
         </div>
