@@ -1,11 +1,16 @@
 <?php
 
+
 session_start();
 require "../connection.php";
 
 $email = $_POST["email"];
 $password = $_POST["password"];
 $rememberMe = $_POST["rememberMe"];
+
+// echo ($email);
+// echo ($password);
+// echo ($rememberMe);
 
 if (empty($email)) {
     echo ('Enter the Email');
@@ -22,18 +27,19 @@ if (empty($email)) {
     $n = $response->num_rows;
 
     if ($n == 1) {
-        $data = $response->fetch_assoc();
-        $_SESSION['u'] = $data;
-        ob_end_clean();
-        
-        if ($rememberMe) {
-            setcookie('email', $email, time() + (60 * 60 * 24 * 30));
-            setcookie('password', $password, time() + (60 * 60 * 24 * 30));
-        } else {
-            setcookie('email', "", -1);
-            setcookie('password', '', -1);
+        echo ("success");
+        $d = $response->fetch_assoc();
+        $_SESSION["u"] = $d;
+
+
+        if($rememberMe == true){
+            setcookie("email",$email,time()+3600);
+            setcookie("password",$password,time()+3600);
+        }else{
+            setcookie("email","",-1);
+            setcookie("password","",-1);
         }
-        echo ('signInSuccess');
+
     } else {
         echo ("Email and password are mismatching");
     }

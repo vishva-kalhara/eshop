@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php session_start();
+        setcookie("u","ajax", time()+3600);
+
+
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +56,7 @@
                                 <input type="text" placeholder="ex: Wick" class="form-control" id="lname">
                             </div>
                             <div class="col-12">
-                                <label class="form-label">First Name</label>
+                                <label class="form-label">E-mail</label>
                                 <input type="email" placeholder="ex: johnwick@example.com" class="form-control border-pill" id="email">
                             </div>
                             <div class="col-12">
@@ -102,11 +108,11 @@
                             </div>
                             <div class="col-12">
                                 <label class="col-12">Email</label>
-                                <input type="email" value="wishvakalhara@gmail.com" id="email2" placeholder="ex: johnwick@example.com" class="form-control">
+                                <input type="email" value="" id="email2" placeholder="ex: johnwick@example.com" class="form-control">
                             </div>
                             <div class="col-12">
                                 <label class="col-12">Password</label>
-                                <input type="email" value="123456" id="password2" placeholder="ex: **********" class="form-control">
+                                <input type="email" value="" id="password2" placeholder="ex: **********" class="form-control">
                             </div>
                             <div class="col-6">
                                 <div class="form-check">

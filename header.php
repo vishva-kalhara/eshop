@@ -71,13 +71,13 @@ session_start();
                 <div class="dropdown justify-content-end d-flex" style=" padding:8px 16px 8px 16px; border-radius: 8px;">
                     <a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" style="color: #1E1E1E; font-size: 14px; font-weight: 600; text-decoration: none;" href="#">My eShop </a>
                     <div class="dropdown-menu" style="margin-right: 10px;">
-                        <a class="dropdown-item" href="#">My Profile</a>
-                        <a class="dropdown-item" href="#">Second Item</a>
+                        <a class="dropdown-item" href="user_profile.php">My Profile</a>
+                        <a class="dropdown-item" href="add_product.php">Add New Product</a>
                         <a class="dropdown-item" href="#">Third Item</a>
                     </div>
                 </div>
                 <div style="color: #1E1E1E; font-size: 14px; font-weight: 600; display: flex; background-color: #f4f4f4; padding:8px 16px 8px 16px; border-radius: 8px;">
-                    wishva
+                    <?php echo( $_SESSION["u"]["fname"]) ?>
                 </div>
             </div>
         </div>

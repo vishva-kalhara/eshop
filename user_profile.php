@@ -19,8 +19,11 @@ require './connection.php';
 <body>
     <?php require './header.php';
 
+
+
     if (isset($_SESSION['u'])) {
         $email = $_SESSION['u']["email"];
+   
         // $details_res = Database::search("SELECT * FROM `eshop`.`user` INNER JOIN `gender` ON `user`.`gender_id`=`gender`.`id` WHERE `email`='wishva@gmail.com'");
         $details_res = Database::search("SELECT * FROM `eshop`.`user` INNER JOIN `gender` ON `user`.`gender_id`=`gender`.`id` WHERE `email`='" . $email . "'");
         $image_res = Database::search("SELECT * FROM `profile_img` WHERE `user_email`='" . $email . "'");
@@ -31,10 +34,8 @@ require './connection.php';
         $address_data = $address_res->fetch_assoc();
     }
     ?>
-
     <div class="container-fluid">
         <div class="row">
-
             <div class="col-12 bg-primary">
                 <div class="row">
 
@@ -59,27 +60,27 @@ require './connection.php';
                                     <div class="row mt-4">
                                         <div class="col-6">
                                             <label class="form-label">First Name</label>
-                                            <input type="text" class="form-control" value="<?php echo $details_data["fname"] ?>" />
+                                            <input type="text" id="fname" class="form-control" value="<?php echo $details_data["fname"] ?>" />
                                         </div>
                                         <div class="col-6">
                                             <label class="form-label">Last Name</label>
-                                            <input type="text" class="form-control" value="<?php echo $details_data["lname"] ?>" />
+                                            <input type="text" id="lname" class="form-control" value="<?php echo $details_data["lname"] ?>" />
                                         </div>
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col-6">
                                             <label class="form-label">Mobile Number</label>
-                                            <input type="text" class="form-control" value="<?php echo $details_data["mobile"] ?>" />
+                                            <input type="text" id="mobile" class="form-control" value="<?php echo $details_data["mobile"] ?>" />
                                         </div>
                                         <div class="col-6">
                                             <label class="form-label">password</label>
-                                            <input type="text" class="form-control" value="<?php echo $details_data["password"] ?>" />
+                                            <input type="text" id="pw" class="form-control" value="<?php echo $details_data["password"] ?>" />
                                         </div>
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col-6">
                                             <label class="form-label">E-mail</label>
-                                            <input type="text" class="form-control" value="<?php echo $details_data["email"] ?>" />
+                                            <input type="text" id="email" class="form-control" value="<?php echo $details_data["email"] ?>" />
                                         </div>
                                         <div class="col-6">
                                             <label class="form-label">Registered Date</label>
@@ -89,17 +90,17 @@ require './connection.php';
                                     <div class="row mt-4">
                                         <div class="col-6">
                                             <label class="form-label">Address 1</label>
-                                            <input type="text" class="form-control" placeholder="Address line 1" value="<?php echo (isset($address_data["line1"]) ? $address_data["line1"] : "") ?>" />
+                                            <input type="text" id="line1" class="form-control" placeholder="Address line 1" value="<?php echo (isset($address_data["line1"]) ? $address_data["line1"] : "") ?>" />
                                         </div>
                                         <div class="col-6">
                                             <label class="form-label">Address 2</label>
-                                            <input type="text" class="form-control" placeholder="Address line 2" value="<?php echo (isset($address_data["line2"]) ? $address_data["line2"] :  "") ?>" />
+                                            <input type="text" id="line2" class="form-control" placeholder="Address line 2" value="<?php echo (isset($address_data["line2"]) ? $address_data["line2"] :  "") ?>" />
                                         </div>
                                     </div>
 
                                     <?php
                                     $province_res = Database::search("SELECT * FROM `province`");
-                                    $district_res = Database::search("SELECT * FROM `district`");
+                                    $district_res = Database::search("SELECT * FROM `district` ");
                                     $city_res = Database::search("SELECT * FROM `city`");
 
                                     $province_num = $province_res->num_rows;
@@ -110,7 +111,7 @@ require './connection.php';
                                     <div class="row mt-4">
                                         <div class="col-6">
                                             <label class="form-label">Province</label>
-                                            <select class="form-control">
+                                            <select class="form-control" id="province">
                                                 <option value="0">Select Province</option>
                                                 <?php
                                                 for ($i=0; $i < $province_num; $i++) {
@@ -124,27 +125,52 @@ require './connection.php';
                                         </div>
                                         <div class="col-6">
                                             <label class="form-label">District</label>
-                                            <select class="form-control">
+                                            <select class="form-control" id="district">
                                                 <option value="0">Select District</option>
-                                                <option value="1">Colombo</option>
+                                                <?php
+                                                for ($i=0; $i < $district_num; $i++) {
+                                                    $district_data = $district_res->fetch_assoc();
+                                                ?>
+                                                    <option value="<?php echo $district_data["id"] ?>"><?php echo $district_data["name"] ?></option>
+                                                <?php
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col-6">
                                             <label class="form-label">City</label>
-                                            <select class="form-control">
+                                            <select class="form-control" id="city">
                                                 <option value="0">Select City</option>
-                                                <option value="1">Kotte</option>
+                                                <?php
+                                                for ($i=0; $i < $city_num; $i++) {
+                                                    $city_data = $city_res->fetch_assoc();
+                                                ?>
+                                                    <option value="<?php echo $city_data["id"] ?>"><?php echo $city_data["name_en"] ?></option>
+                                                <?php
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                         <div class="col-6">
                                             <label class="form-label">Gender</label>
-                                            <input type="text" class="form-control" readonly />
+                                            <?php 
+                                                $gender_res = Database::search("SELECT `gender_name` FROM `eshop`.`gender` WHERE `id` IN (SELECT `gender_id` FROM `eshop`.`user` WHERE `email`='".$email."')");
+                                                $gender_data = $gender_res->fetch_assoc();
+                                            ?>
+                                            <input type="text" class="form-control" value="<?php echo($gender_data["gender_name"]) ?>" readonly />
                                         </div>
                                     </div>
                                     <div class="row mt-4 mx-1 ">
-                                        <button class="btn btn-primary py-2">Update profile</button>
+                                        <div class="col-6">
+                                            <label class="form-label">Postal Code</label>
+                                            <input id="pc" type="text" class="form-control" value="<?php echo(isset($gender_data["postal_code"]) ? $gender_data["postal_code"] :"") ?>"  />
+                                        </div>
+
+                                    </div>
+                                    <div class="row mt-4 mx-1 ">
+                                        <button class="btn btn-primary py-2" onclick="updateProfile()">Update profile</button>
                                     </div>
                                 </div>
                             </div>

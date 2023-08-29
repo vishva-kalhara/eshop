@@ -72,7 +72,7 @@ function signIn() {
 			const t = req.responseText;
 			console.log(t);
 			if (t == "signInSuccess") {
-				window.location = "home.php";
+				// window.location = "home.php";
 			} else {
 				msgSignIn.innerHTML = t;
 				console.error(t);
@@ -144,4 +144,48 @@ const showHidePassword = function (btn, target) {
 	}
 };
 
-console.log("gg");
+// console.log("gg");
+
+function updateProfile() {
+	var profile_img = document.getElementById("profileImage");
+	var first_name = document.getElementById("fname");
+	var last_name = document.getElementById("lname");
+	var mobile_no = document.getElementById("mobile");
+	var password = document.getElementById("pw");
+	var email_address = document.getElementById("email");
+	var address_line1 = document.getElementById("line1");
+	var address_line2 = document.getElementById("line2");
+	var province = document.getElementById("province");
+	var district = document.getElementById("district");
+	var city = document.getElementById("city");
+	var postal_code = document.getElementById("pc");
+
+	var f = new FormData();
+	f.append("img", profile_img.files[0]);
+	f.append("fn", first_name.value);
+	f.append("ln", last_name.value);
+	f.append("mn", mobile_no.value);
+	f.append("pw", password.value);
+	f.append("ea", email_address.value);
+	f.append("al1", address_line1.value);
+	const valLine2 = address_line2.value
+	f.append("al2", valLine2);
+	// console.log(province.value)
+	f.append("p", province.value);
+	f.append("d", district.value);
+	f.append("c", city.value);
+	f.append("pc", postal_code.value);
+
+	var r = new XMLHttpRequest();
+
+	r.onreadystatechange = function () {
+		if (r.status == 200 && r.readyState == 4) {
+			var t = r.responseText;
+			alert(t);
+		}
+	};
+
+	r.open("POST", "./process/userProfileUpdate.php",true);
+	r.send(f);
+}
+
