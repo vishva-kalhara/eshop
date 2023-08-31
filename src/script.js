@@ -84,9 +84,9 @@ function signIn() {
 	req.send(frmData);
 }
 
-let bootstrapModal;
+let bootstrapModal; 	
 
-const forgetPassword = function () {
+const forgetPassword = function (ssss) {
 	const req = new XMLHttpRequest();
 	req.onreadystatechange = function () {
 		if (req.readyState < 4) {
@@ -134,6 +134,26 @@ function resetPassword() {
 	} else {
 		alert("Mismatching Passwords");
 	}
+}
+
+const signout = function(){
+	var r = new XMLHttpRequest();
+
+	r.onreadystatechange = function () {
+		if (r.readyState == 4 && r.status == 200) {
+			var t = r.responseText;
+
+			if (t == "success") {
+				// window.location.reload();
+				window.location = "index.php";
+			} else {
+				alert(t);
+			}
+		}
+	};
+
+	r.open("GET", "./process/signout.php", true);
+	r.send();
 }
 
 const showHidePassword = function (btn, target) {

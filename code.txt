@@ -1,6 +1,0 @@
-<?php
-
-define('mysqlPassword', 'GKalhaRaOOGLE!23');
-
-define('fromEmail', 'vishvakalhara@gmail.com');
-define('appPassword', 'wuxnctatzsumdupq');

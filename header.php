@@ -73,11 +73,11 @@ session_start();
                     <div class="dropdown-menu" style="margin-right: 10px;">
                         <a class="dropdown-item" href="user_profile.php">My Profile</a>
                         <a class="dropdown-item" href="add_product.php">Add New Product</a>
-                        <a class="dropdown-item" href="#">Third Item</a>
+                        <a class="dropdown-item" onclick="signout()" href="#">Sign out</a>
                     </div>
                 </div>
                 <div style="color: #1E1E1E; font-size: 14px; font-weight: 600; display: flex; background-color: #f4f4f4; padding:8px 16px 8px 16px; border-radius: 8px;">
-                    <?php echo( $_SESSION["u"]["fname"]) ?>
+                    <?php echo(isset($_SESSION["u"])? $_SESSION["u"]["fname"] : "Sign in");?>
                 </div>
             </div>
         </div>
