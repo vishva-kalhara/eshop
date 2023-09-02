@@ -80,3 +80,26 @@ body{
 .wsh-banner{
 	width: 100vw;
 }
+
+.pm{
+	height: 65px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.pm1{
+	background-image: url("../resources/img/payment_img/visa_img.png");
+}
+
+.pm2{
+	background-image: url("../resources/img/payment_img/american_express_img.png");
+}
+
+.pm3{
+	background-image: url("../resources/img/payment_img/mastercard_img.png");
+}
+
+.pm4{
+	background-image: url("../resources/img/payment_img/paypal_img.png");
+}

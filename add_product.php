@@ -75,24 +75,9 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <select class="form-select text-center" id="brand">
-                                                <option value="0">Select Brand</option>
-                                                <?php
-
-                                                $brand_rs = Database::search("SELECT * FROM `brand`");
-                                                $brand_num = $brand_rs->num_rows;
-
-                                                for ($x = 0; $x < $brand_num; $x++) {
-                                                    $brand_data = $brand_rs->fetch_assoc();
-
-                                                ?>
-
-                                                    <option value="<?php echo $brand_data["brand_id"]; ?>"><?php echo $brand_data["brand_name"]; ?></option>
-
-                                                <?php
-                                                }
-
-                                                ?>
+                                            <select class="form-select text-center" id="brand"  onchange="loadModel()">
+                                                <option value="0">Select Category First</option>
+                                                
                                             </select>
                                         </div>
 
@@ -108,23 +93,8 @@
 
                                         <div class="col-12">
                                             <select class="form-select text-center" id="model">
-                                                <option value="0">Select Model</option>
-                                                <?php
-
-                                                $model_rs = Database::search("SELECT * FROM `model`");
-                                                $model_num = $model_rs->num_rows;
-
-                                                for ($x = 0; $x < $model_num; $x++) {
-                                                    $model_data = $model_rs->fetch_assoc();
-
-                                                ?>
-
-                                                    <option value="<?php echo $model_data["model_id"]; ?>"><?php echo $model_data["model_name"]; ?></option>
-
-                                                <?php
-                                                }
-
-                                                ?>
+                                                <option value="0">Select Brand First</option>
+                                                
                                             </select>
                                         </div>
 
@@ -206,7 +176,7 @@
                                                 <div class="col-12">
                                                     <div class="input-group mt-2 mb-2">
                                                         <input type="text" class="form-control" placeholder="Add new Colour" id="clr_in"/>
-                                                        <button class="btn btn-outline-primary" type="button" id="button-addon2">+ Add</button>
+                                                        <button class="btn btn-outline-primary" type="button" onclick="addColor()" id="button-addon2">+ Add</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -334,13 +304,13 @@
                                         <div class="offset-lg-3 col-12 col-lg-6">
                                             <div class="row">
                                                 <div class="col-4 border border-primary rounded">
-                                                    <img src="resources/addproductimg.svg" class="img-fluid" style="width: 250px;" id="i0"/>
+                                                    <img src="./resources/img/product_img/addproductimg.svg" class="img-fluid" style="width: 250px; height: 250px; background-size: cover; background-position: center;" id="i0"/>
                                                 </div>
                                                 <div class="col-4 border border-primary rounded">
-                                                    <img src="resources/addproductimg.svg" class="img-fluid" style="width: 250px;" id="i1"/>
+                                                    <img src="./resources/img/product_img/addproductimg.svg" class="img-fluid" style="width: 250px; height: 250px; background-size: cover; background-position: center;" id="i1"/>
                                                 </div>
                                                 <div class="col-4 border border-primary rounded">
-                                                    <img src="resources/addproductimg.svg" class="img-fluid" style="width: 250px;" id="i2"/>
+                                                    <img src="./resources/img/product_img/addproductimg.svg" class="img-fluid" style="width: 250px; height: 250px; background-size: cover; background-position: center;" id="i2"/>
                                                 </div>
                                             </div>
                                         </div>

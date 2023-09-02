@@ -84,7 +84,7 @@ function signIn() {
 	req.send(frmData);
 }
 
-let bootstrapModal; 	
+let bootstrapModal;
 
 const forgetPassword = function (ssss) {
 	const req = new XMLHttpRequest();
@@ -136,7 +136,7 @@ function resetPassword() {
 	}
 }
 
-const signout = function(){
+const signout = function () {
 	var r = new XMLHttpRequest();
 
 	r.onreadystatechange = function () {
@@ -154,7 +154,7 @@ const signout = function(){
 
 	r.open("GET", "./process/signout.php", true);
 	r.send();
-}
+};
 
 const showHidePassword = function (btn, target) {
 	if (modalNewPassword.type == "password") {
@@ -188,7 +188,7 @@ function updateProfile() {
 	f.append("pw", password.value);
 	f.append("ea", email_address.value);
 	f.append("al1", address_line1.value);
-	const valLine2 = address_line2.value
+	const valLine2 = address_line2.value;
 	f.append("al2", valLine2);
 	// console.log(province.value)
 	f.append("p", province.value);
@@ -205,7 +205,71 @@ function updateProfile() {
 		}
 	};
 
-	r.open("POST", "./process/userProfileUpdate.php",true);
+	r.open("POST", "./process/userProfileUpdate.php", true);
 	r.send(f);
 }
+
+const loadBrands = function () {
+	const category = document.getElementById("category").value;
+	// alert(category)
+	const req = new XMLHttpRequest();
+	req.onreadystatechange = function () {
+		if (req.readyState == 4 && req.status == 200) {
+			const markup = req.responseText;
+			document.getElementById("brand").innerHTML = markup;
+		}
+	};
+
+	req.open("GET", `./process/loadbrand.php?c=${category}`, true);
+	req.send();
+};
+
+function loadModel(){
+	const sel_brand = document.getElementById('brand').value;
+
+	const req = new XMLHttpRequest();
+	req.onreadystatechange = function(){
+		if(req.readyState = 4 && req.status ==200){
+			const markup = req.responseText;
+			document.getElementById('model').innerHTML = markup;
+			console.log(markup)
+		}
+	}
+
+	req.open('GET', `./process/load_model.php?b=${sel_brand}`, true);
+	req.send();
+}
+
+function addColor(){
+	const newColor = document.getElementById("clr_in");
+	const newColorVal = newColor.value;
+	
+	const req = new XMLHttpRequest();
+	req.onreadystatechange = function(){
+		if(req.readyState==4 && req.status==200){
+			document.getElementById("clr").innerHTML = req.responseText;
+			newColor.value = null;
+		}
+	}
+
+	req.open('GET', `./process/add_color.php?clr=${newColorVal}`, true)
+	req.send();
+}
+
+const changeProductImage = function () {
+	const images = document.getElementById("imageuploader");
+	images.onchange = function () {
+		const img_count = images.files.length;
+		if (img_count <= 3) {
+			for (let i = 0; i < img_count; i++) {
+				const file = this.files[i];
+				const url = window.URL.createObjectURL(file);
+				document.getElementById(`i${i}`).src = url;
+			}
+		} else
+			Alert(
+				`${img_count} files uploaded! Please inset less than 4 files.`
+			);
+	};
+};
 
