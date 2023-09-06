@@ -224,35 +224,40 @@ const loadBrands = function () {
 	req.send();
 };
 
-function loadModel(){
-	const sel_brand = document.getElementById('brand').value;
+function loadModel() {
+	const sel_brand = document.getElementById("brand").value;
 
 	const req = new XMLHttpRequest();
-	req.onreadystatechange = function(){
-		if(req.readyState = 4 && req.status ==200){
+	req.onreadystatechange = function () {
+		if ((req.readyState = 4 && req.status == 200)) {
 			const markup = req.responseText;
-			document.getElementById('model').innerHTML = markup;
-			console.log(markup)
+			document.getElementById("model").innerHTML = markup;
+			console.log(markup);
 		}
-	}
+	};
 
-	req.open('GET', `./process/load_model.php?b=${sel_brand}`, true);
+	req.open("GET", `./process/load_model.php?b=${sel_brand}`, true);
 	req.send();
 }
 
-function addColor(){
+function addColor() {
 	const newColor = document.getElementById("clr_in");
 	const newColorVal = newColor.value;
-	
-	const req = new XMLHttpRequest();
-	req.onreadystatechange = function(){
-		if(req.readyState==4 && req.status==200){
-			document.getElementById("clr").innerHTML = req.responseText;
-			newColor.value = null;
-		}
-	}
 
-	req.open('GET', `./process/add_color.php?clr=${newColorVal}`, true)
+	const req = new XMLHttpRequest();
+	req.onreadystatechange = function () {
+		if (req.readyState == 4 && req.status == 200) {
+			const responseT = req.responseText;
+			if (responseT == "Already there is a color") {
+				alert(responseT);
+			} else {
+				document.getElementById("clr").innerHTML = responseT;
+				newColor.value = null;
+			}
+		}
+	};
+
+	req.open("GET", `./process/add_color.php?clr=${newColorVal}`, true);
 	req.send();
 }
 
@@ -273,3 +278,61 @@ const changeProductImage = function () {
 	};
 };
 
+
+function addProduct(){
+
+    var category = document.getElementById("category");
+    var brand = document.getElementById("brand");
+    var model = document.getElementById("model");
+    var title = document.getElementById("title");
+    var condition = 0;
+    if(document.getElementById("b").checked){
+        condition = 1;
+    }else if(document.getElementById("u").checked){
+        condition = 2;
+    }
+    var clr = document.getElementById("clr");
+    var qty = document.getElementById("qty");
+    var cost = document.getElementById("cost");
+    var dwc = document.getElementById("dwc");
+    var doc = document.getElementById("doc");
+    var desc = document.getElementById("desc");
+    var image = document.getElementById("imageuploader");
+
+    var f = new FormData();
+    f.append("ca",category.value);
+    f.append("b",brand.value);
+    f.append("m",model.value);
+    f.append("t",title.value);
+    f.append("con",condition);
+    f.append("col",clr.value);
+    f.append("qty",qty.value);
+    f.append("cost",cost.value);
+    f.append("dwc",dwc.value);
+    f.append("doc",doc.value);
+    f.append("desc",desc.value);
+    
+    var file_count = image.files.length;
+    for(var x = 0;x < file_count;x++){
+        f.append("img" + x,image.files[x]);
+    }
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function (){
+        if(r.status == 200 && r.readyState == 4){
+            var t = r.responseText;
+
+            if(t == "success"){
+                window.location.reload();
+            }else{
+                alert (t);
+            }
+            
+        }
+    }
+
+    r.open("POST","./process/add_product.php",true);
+    r.send(f);
+
+}

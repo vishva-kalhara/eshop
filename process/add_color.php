@@ -20,5 +20,7 @@ if (isset($_GET["clr"])) {
             <option value="<?php echo ($newColors_data["clr_id"]) ?>"><?php echo ($newColors_data["clr_name"]) ?></option>
 <?php
         }
+    } else{
+        echo ("Already there is a color");
     }
 }
