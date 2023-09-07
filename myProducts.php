@@ -284,21 +284,45 @@ require './connection.php';
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination pagination-lg justify-content-center">
                                             <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
+                                                <a class="page-link" href="
+                                                <?php
+                                                if ($page_num <= 1) {
+                                                    echo ("#");
+                                                } else {
+                                                    echo ("?page=" . ($page_num - 1));
+                                                }
+                                                ?>" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                 </a>
                                             </li>
 
-                                            <li class="page-item active">
-                                                <a class="page-link" href="#">1</a>
-                                            </li>
+                                            <?php
+                                            for ($y = 1; $y <= $number_of_pages; $y++) {
+                                                if ($y == $page_num) {
+                                            ?>
+                                                    <li class="page-item active">
+                                                        <a class="page-link" href="<?php echo "?page=" . ($y); ?>"><?php echo $y; ?></a>
+                                                    </li>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="<?php echo "?page=" . ($y); ?>"><?php echo $y; ?></a>
+                                                    </li>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
 
                                             <li class="page-item">
-                                                <a class="page-link" href="#">2</a>
-                                            </li>
-
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
+                                                <a class="page-link" href="
+                                                <?php
+                                                if ($page_num >= $number_of_pages) {
+                                                    echo ("#");
+                                                } else {
+                                                    echo ("?page=" . ($page_num + 1));
+                                                }
+                                                ?>" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                 </a>
                                             </li>
