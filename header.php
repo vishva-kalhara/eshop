@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-session_start();
+// session_start();
 ?>
 
 <head>
@@ -77,7 +77,7 @@ session_start();
                     </div>
                 </div>
                 <div style="color: #1E1E1E; font-size: 14px; font-weight: 600; display: flex; background-color: #f4f4f4; padding:8px 16px 8px 16px; border-radius: 8px;">
-                    <?php echo(isset($_SESSION["u"])? $_SESSION["u"]["fname"] : "Sign in");?>
+                    <!-- <?php echo(isset($_SESSION["u"])? $_SESSION["u"]["fname"] : "Sign in");?> -->
                 </div>
             </div>
         </div>
@@ -90,4 +90,4 @@ session_start();
 
 </html>
 
-<?php ?>
+<?php  ?>

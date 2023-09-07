@@ -11,6 +11,7 @@
             if (!isset(Database::$connection)) {
                 Database::$connection = new mysqli("localhost", "root", mysqlPassword , "eshop", "3306");
             }
+            
         }
  
         public static function iud($q)

@@ -2,9 +2,11 @@
 <?php
 
 session_start();
+require './connection.php';
 ?>
 
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +20,12 @@ session_start();
 <body style="background-color: #E9EBEE;">
     <?php
     if ($_SESSION["u"]) {
+        $user_email = $_SESSION["u"]["email"];
+        $page_num;
+
+        include "./header.php";
     ?>
+
 
         <div class="container-fluid">
             <div class="row">
@@ -30,13 +37,24 @@ session_start();
                             <div class="row">
                                 <div class="col-12 col-lg-4 mt-1 mb-1 text-center">
 
-                                    <img src="./resources/img/profile_img/dummy.jpg" width="90px" height="90px" class="rounded-circle" />
+                                    <?php
+                                    $profile_img_res = Database::search("SELECT * FROM `profile_img` WHERE `user_email`='$user_email'");
+                                    $profile_img_num = $profile_img_res->num_rows;
+
+                                    if ($profile_img_num == 1) {
+                                        $profile_img_data = $profile_img_res->fetch_assoc();
+                                    }
+
+                                    ?>
+
+                                    <!-- <img src=" $profile_img_data["path"] : "./resources/img/profile_img/dummy.jpg") ?>" width="90px" height="90px" class="rounded-circle" /> -->
+                                    <img src="<?php echo ($profile_img_num > 0 ? $profile_img_data["path"] : "./resources/img/profile_img/dummy.jpg") ?>" width="90px" height="90px" class="rounded-circle" />
 
                                 </div>
                                 <div class="col-12 col-lg-8">
                                     <div class="row text-center text-lg-start">
                                         <div class="col-12 mt-0 mt-lg-4">
-                                            <span class="text-white fw-bold">John Doe</span>
+                                            <span class="text-white fw-bold"><?php echo ($_SESSION["u"]["first_name"]) ?></span>
                                         </div>
                                         <div class="col-12">
                                             <span class="text-black-50 fw-bold">johndoe@gmail.com</span>
@@ -181,32 +199,70 @@ session_start();
                                 <div class="offset-1 col-10 text-center">
                                     <div class="row justify-content-center">
 
-                                        <!-- card -->
-                                        <div class="card mb-3 mt-3 col-12 col-lg-6">
-                                            <div class="row">
-                                                <div class="col-md-4 mt-4">
+                                        <?php
+                                        if (isset($_GET["page"])) {
+                                            $page_num = $_GET["page"];
+                                        } else {
+                                            $page_num = 1;
+                                        }
 
-                                                    <img src="resourses/mobile_images/iphone12.jpg" class="img-fluid rounded-start" />
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fw-bold">Apple iPhone 12</h5>
-                                                        <span class="card-text fw-bold text-primary">Rs. 100000 .00</span><br />
-                                                        <span class="card-text fw-bold text-success">10 Items left</span>
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="x" />
-                                                            <label class="form-check-label fw-bold text-info" for="x">
-                                                                Make Your Product Deactive
-                                                            </label>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <div class="row g-1">
-                                                                    <div class="col-12 col-lg-6 d-grid">
-                                                                        <button class="btn btn-success fw-bold">Update</button>
-                                                                    </div>
-                                                                    <div class="col-12 col-lg-6 d-grid">
-                                                                        <button class="btn btn-danger fw-bold">Delete</button>
+                                        $product_rs = Database::search("SELECT * FROM `product` WHERE `user_email`='$user_email'");
+                                        $product_num = $product_rs->num_rows;
+
+                                        $results_per_page = 5;
+                                        $number_of_pages = ceil($product_num / $results_per_page);
+
+                                        $page_results = ($page_num - 1) * $results_per_page;
+                                        $selected_rs = Database::search("SELECT * FROM `product` WHERE `user_email`='$user_email' LIMIT $results_per_page OFFSET $page_results");
+                                        $selected_num = $selected_rs->num_rows;
+
+                                        for ($i = 0; $i < $selected_num; $i++) {
+                                            $selected_data = $selected_rs->fetch_assoc();
+                                        ?>
+
+                                            <!-- card -->
+                                            <div class="card mb-3 mt-3 col-12 col-lg-6">
+                                                <div class="row">
+                                                    <div class="col-md-4 mt-4">
+
+                                                        <?php
+                                                        $pro_img_rs = Database::search("SELECT * FROM `product_img` WHERE `product_id`='" . $selected_data["id"] . "' LIMIT 1");
+                                                        $pro_img_num = $pro_img_rs->num_rows;
+                                                        if ($pro_img_num == 1) {
+                                                            $pro_img_data = $pro_img_rs->fetch_assoc();
+                                                        }
+
+
+                                                        ?>
+
+                                                        <img src="<?php echo ($pro_img_data["img_path"]) ?>" class="img-fluid rounded-start" />
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title fw-bold"><?php echo ($selected_data["title"]) ?></h5>
+                                                            <span class="card-text fw-bold text-primary">LKR.<?php echo ($selected_data["price"]) ?></span><br />
+                                                            <span class="card-text fw-bold text-success"><?php echo ($selected_data["qty"]) ?></span>
+                                                            <div class="form-check form-switch">
+                                                                <input class="form-check-input" type="checkbox" role="switch" id="<?php echo $selected_data["id"]; ?>" onchange="changeStatus(<?php echo $selected_data['id']; ?>);" <?php if ($selected_data["status_id"] == 2) { ?> checked <?php } ?> />
+                                                                <label class="form-check-label fw-bold text-info" for="<?php echo $selected_data["id"]; ?>">
+                                                                    <?php if ($selected_data["status_id"] == 2) { ?>
+                                                                        Activate Product
+                                                                    <?php } else {
+                                                                    ?>
+                                                                        Deactivate Product
+                                                                    <?php
+                                                                    } ?>
+                                                                </label>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="row g-1">
+                                                                        <div class="col-12 col-lg-6 d-grid">
+                                                                            <button class="btn btn-success fw-bold">Update</button>
+                                                                        </div>
+                                                                        <div class="col-12 col-lg-6 d-grid">
+                                                                            <button class="btn btn-danger fw-bold">Delete</button>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -214,7 +270,11 @@ session_start();
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+
+                                        <?php
+                                        }
+                                        ?>
+
                                         <!-- card -->
 
                                     </div>

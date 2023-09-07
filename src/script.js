@@ -278,61 +278,72 @@ const changeProductImage = function () {
 	};
 };
 
+function addProduct() {
+	var category = document.getElementById("category");
+	var brand = document.getElementById("brand");
+	var model = document.getElementById("model");
+	var title = document.getElementById("title");
+	var condition = 0;
+	if (document.getElementById("b").checked) {
+		condition = 1;
+	} else if (document.getElementById("u").checked) {
+		condition = 2;
+	}
+	var clr = document.getElementById("clr");
+	var qty = document.getElementById("qty");
+	var cost = document.getElementById("cost");
+	var dwc = document.getElementById("dwc");
+	var doc = document.getElementById("doc");
+	var desc = document.getElementById("desc");
+	var image = document.getElementById("imageuploader");
 
-function addProduct(){
+	var f = new FormData();
+	f.append("ca", category.value);
+	f.append("b", brand.value);
+	f.append("m", model.value);
+	f.append("t", title.value);
+	f.append("con", condition);
+	f.append("col", clr.value);
+	f.append("qty", qty.value);
+	f.append("cost", cost.value);
+	f.append("dwc", dwc.value);
+	f.append("doc", doc.value);
+	f.append("desc", desc.value);
 
-    var category = document.getElementById("category");
-    var brand = document.getElementById("brand");
-    var model = document.getElementById("model");
-    var title = document.getElementById("title");
-    var condition = 0;
-    if(document.getElementById("b").checked){
-        condition = 1;
-    }else if(document.getElementById("u").checked){
-        condition = 2;
-    }
-    var clr = document.getElementById("clr");
-    var qty = document.getElementById("qty");
-    var cost = document.getElementById("cost");
-    var dwc = document.getElementById("dwc");
-    var doc = document.getElementById("doc");
-    var desc = document.getElementById("desc");
-    var image = document.getElementById("imageuploader");
+	var file_count = image.files.length;
+	for (var x = 0; x < file_count; x++) {
+		f.append("img" + x, image.files[x]);
+	}
 
-    var f = new FormData();
-    f.append("ca",category.value);
-    f.append("b",brand.value);
-    f.append("m",model.value);
-    f.append("t",title.value);
-    f.append("con",condition);
-    f.append("col",clr.value);
-    f.append("qty",qty.value);
-    f.append("cost",cost.value);
-    f.append("dwc",dwc.value);
-    f.append("doc",doc.value);
-    f.append("desc",desc.value);
-    
-    var file_count = image.files.length;
-    for(var x = 0;x < file_count;x++){
-        f.append("img" + x,image.files[x]);
-    }
+	var r = new XMLHttpRequest();
 
-    var r = new XMLHttpRequest();
+	r.onreadystatechange = function () {
+		if (r.status == 200 && r.readyState == 4) {
+			var t = r.responseText;
 
-    r.onreadystatechange = function (){
-        if(r.status == 200 && r.readyState == 4){
-            var t = r.responseText;
+			if (t == "success") {
+				window.location.reload();
+			} else {
+				alert(t);
+			}
+		}
+	};
 
-            if(t == "success"){
-                window.location.reload();
-            }else{
-                alert (t);
-            }
-            
-        }
-    }
+	r.open("POST", "./process/add_product.php", true);
+	r.send(f);
+}
 
-    r.open("POST","./process/add_product.php",true);
-    r.send(f);
-
+function changeStatus(id) {
+	// const product_id = id;
+	const req = new XMLHttpRequest();
+	req.onreadystatechange = function () {
+		if (req.status == 200 && req.readyState == 4) {
+			const resText = req.responseText;
+			if (resText == "deactivated" || resText == "activated") {
+				window.location.reload();
+			} else alert(resText);
+		}
+	};
+	req.open("GET", `./process/changeProductStatus.php?p=${id}`, true);
+	req.send();
 }
