@@ -72,7 +72,7 @@ function signIn() {
 			const t = req.responseText;
 			console.log(t);
 			if (t == "signInSuccess") {
-				// window.location = "home.php";
+				window.location = "home.php";
 			} else {
 				msgSignIn.innerHTML = t;
 				console.error(t);
@@ -226,17 +226,18 @@ const loadBrands = function () {
 
 function loadModel() {
 	const sel_brand = document.getElementById("brand").value;
+	const category = document.getElementById("category").value;
 
 	const req = new XMLHttpRequest();
 	req.onreadystatechange = function () {
 		if ((req.readyState = 4 && req.status == 200)) {
 			const markup = req.responseText;
 			document.getElementById("model").innerHTML = markup;
-			console.log(markup);
+			// console.log(markup);
 		}
 	};
 
-	req.open("GET", `./process/load_model.php?b=${sel_brand}`, true);
+	req.open("GET", `./process/load_model.php?b=${sel_brand}&c=${category}`, true);
 	req.send();
 }
 
@@ -321,10 +322,10 @@ function addProduct() {
 		if (r.status == 200 && r.readyState == 4) {
 			var t = r.responseText;
 
-			if (t == "success") {
+			if (t == "successsuccesssuccess") {
 				window.location.reload();
 			} else {
-				alert(t);
+				console.log(t);
 			}
 		}
 	};
@@ -346,4 +347,49 @@ function changeStatus(id) {
 	};
 	req.open("GET", `./process/changeProductStatus.php?p=${id}`, true);
 	req.send();
+}
+
+function sort(page) {
+	const search = document.getElementById("s");
+	let time = "0";
+
+	if (document.getElementById("n").checked) {
+		time = "1";
+	} else if (document.getElementById("o").checked) time = "2";
+
+	let qty = "0";
+
+	if (document.getElementById("h").checked) {
+		qty = "1";
+	} else if (document.getElementById("l").checked) qty = "2";
+
+	let condition = "0";
+
+	if (document.getElementById("b").checked) {
+		condition = "1";
+	} else if (document.getElementById("u").checked) condition = "2";
+
+	const frmData = new FormData();
+	frmData.append('s', search.value)
+	frmData.append('t', time)
+	frmData.append('q', qty)
+	frmData.append('c', condition)
+	frmData.append('page', page)
+
+	var req = new XMLHttpRequest();
+
+	req.onreadystatechange = function () {
+		if (req.status == 200 && req.readyState == 4) {
+			var t = req.responseText;
+			document.getElementById("sort").innerHTML = t;
+		}
+	};
+
+	req.open("POST", "./process/sort.php", true);
+	req.send(frmData);
+
+}
+
+function clearSort() {
+    window.location.reload();
 }

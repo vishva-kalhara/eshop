@@ -73,11 +73,12 @@ if ($length <= 3 && $length > 0) {
                     $new_img_extention = ".svg";
                 }
 
-                $file_name = "../resources//img//product_img//" . $title . "_" . $x . "_" . uniqid() . $new_img_extention;
-                move_uploaded_file($img_file["tmp_name"], $file_name);
+                $location_w_name = "resources//img//product_img//" . $title . "_" . $x . "_" . uniqid() . $new_img_extention;
+                $save_location_w_name = "../" . $location_w_name;
+                move_uploaded_file($img_file["tmp_name"], $save_location_w_name);
 
                 Database::iud("INSERT INTO `product_img`(`img_path`,`product_id`) 
-                                VALUES ('" . $file_name . "','" . $product_id . "')");
+                                VALUES ('" . $location_w_name . "','" . $product_id . "')");
 
                 echo ("success");
             } else {

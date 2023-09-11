@@ -54,10 +54,10 @@ require './connection.php';
                                 <div class="col-12 col-lg-8">
                                     <div class="row text-center text-lg-start">
                                         <div class="col-12 mt-0 mt-lg-4">
-                                            <span class="text-white fw-bold"><?php echo ($_SESSION["u"]["first_name"]) ?></span>
+                                            <span class="text-white fw-bold"><?php echo ($_SESSION["u"]["fname"]) ?></span>
                                         </div>
                                         <div class="col-12">
-                                            <span class="text-black-50 fw-bold">johndoe@gmail.com</span>
+                                            <span class="text-white fw-bold"><?php echo ($_SESSION["u"]["email"]) ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@ require './connection.php';
                                     <h1 class="offset-4 offset-lg-2 text-white fw-bold">My Products</h1>
                                 </div>
                                 <div class="col-12 col-lg-2 mx-2 mb-2 my-lg-4 mx-lg-0 d-grid">
-                                    <button class="btn btn-warning fw-bold" onclick="window.location='addProduct.php'">Add Product</button>
+                                    <button class="btn btn-warning fw-bold" onclick="window.location='add_product.php'">Add Product</button>
                                 </div>
                             </div>
                         </div>
@@ -178,10 +178,10 @@ require './connection.php';
                                         <div class="col-12 text-center mt-3 mb-3">
                                             <div class="row g-2">
                                                 <div class="col-12 col-lg-6 d-grid">
-                                                    <button class="btn btn-success fw-bold">Sort</button>
+                                                    <button class="btn btn-success fw-bold" onclick="sort(0)">Sort</button>
                                                 </div>
                                                 <div class="col-12 col-lg-6 d-grid">
-                                                    <button class="btn btn-primary fw-bold">Clear</button>
+                                                    <button class="btn btn-primary fw-bold" onclick="clearSort()">Clear</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -348,7 +348,7 @@ require './connection.php';
 
     ?>
 
-    <script src="script.js"></script>
+    <script src="./src/script.js"></script>
 </body>
 
 </html>

@@ -27,7 +27,7 @@ if (empty($email)) {
     $n = $response->num_rows;
 
     if ($n == 1) {
-        echo ("success");
+        echo ("signInSuccess");
         $d = $response->fetch_assoc();
         $_SESSION["u"] = $d;
 

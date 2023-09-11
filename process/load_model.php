@@ -4,9 +4,12 @@ require '../connection.php';
 
 if (isset($_GET["b"])) {
     $sel_brand = $_GET["b"];
+    $sel_category = $_GET["c"];
 
-    $brand_res = Database::search("SELECT * FROM `model_has_brand` WHERE `brand_brand_id`='" . $sel_brand . "'");
+    // $brand_res = Database::search("SELECT * FROM `eshop`.`brand_has_category` INNER JOIN `eshop`.`brand` ON `brand_has_category`.`brand_brand_id` = `brand`.`brand_id` INNER JOIN `eshop`.`category` ON `brand_has_category`.`category_cat_id` = `category`.`cat_id` WHERE `cat_id`='$sel_category' AND `brand_id`='$sel_brand'");
+    $brand_res = Database::search("SELECT * FROM `model_has_brand` WHERE  `brand_brand_id`='" . $sel_brand . "'");
     $brand_num = $brand_res->num_rows;
+    // $brand_num = 0;
 ?>
 
 
