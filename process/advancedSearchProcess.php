@@ -1,6 +1,6 @@
 <?php
 
-require "connection.php";
+require "../connection.php";
 
 $search_txt = $_POST["t"];
 $category = $_POST["cat"];
@@ -87,10 +87,10 @@ if ($sort == 0) {
     }
 
     if ($condition != 0 && $status == 0) {
-        $query .= " WHERE `condition_condition_id`='" . $condition . "'";
+        $query .= " WHERE `condition_id`='" . $condition . "'";
         $status = 1;
     } else if ($condition != 0 && $status != 0) {
-        $query .= " AND `condition_condition_id`='" . $condition . "'";
+        $query .= " AND `condition_id`='" . $condition . "'";
     }
 
     if ($color != 0 && $status == 0) {
