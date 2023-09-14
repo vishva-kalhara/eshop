@@ -393,3 +393,133 @@ function sort(page) {
 function clearSort() {
     window.location.reload();
 }
+
+function sendId(id) {
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function () {
+        if (r.status == 200 && r.readyState == 4) {
+            var t = r.responseText;
+            if (t == "success") {
+                window.location = "updateProduct.php";
+            } else {
+                alert(t);
+            }
+        }
+    }
+
+    r.open("GET", "./process/sendIdProcess.php?id=" + id, true);
+    r.send();
+
+}
+
+function updateProduct() {
+    var title = document.getElementById("t");
+    var qty = document.getElementById("q");
+    var dwc = document.getElementById("dwc");
+    var doc = document.getElementById("doc");
+    var description = document.getElementById("desc");
+    var image = document.getElementById("imageuploader");
+
+    var f = new FormData();
+    f.append("t", title.value);
+    f.append("q", qty.value);
+    f.append("dwc", dwc.value);
+    f.append("doc", doc.value);
+    f.append("d", description.value);
+
+    var file_count = image.files.length;
+    for (var x = 0; x < file_count; x++) {
+        f.append("i" + x, image.files[x]);
+    }
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function () {
+        if (r.status == 200 && r.readyState == 4) {
+            var t = r.responseText;
+
+            if (t == "success") {
+                window.location = "myProducts.php";
+            } else if (t == "Invalid Image Count") {
+
+                if (confirm("Don't you want to update Product Images?") == true) {
+                    window.location = "myProducts.php";
+                } else {
+                    alert("Select images.");
+                }
+            } else {
+                alert(t);
+            }
+        }
+    }
+
+    r.open("POST", "./process/updateProductProcess.php", true);
+    r.send(f);
+}
+
+
+
+function basicSearch(x) {
+    var text = document.getElementById("kw").value;
+    var select = document.getElementById("c").value;
+ 
+    var f = new FormData();
+    f.append("t", text);
+    f.append("s", select);
+    f.append("page", x);
+
+	// console.log(text, select, x)
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function () {
+        if (r.status == 200 && r.readyState == 4) {
+            var t = r.responseText;
+            document.getElementById("basicSearchResult").innerHTML = t;
+        }
+    }
+
+    r.open("POST", "./process/basic_search.php", true);
+    r.send(f);
+}
+
+function advancedSearch(x){
+
+    var txt = document.getElementById("t");
+    var category = document.getElementById("c1");
+    var brand = document.getElementById("b1");
+    var model = document.getElementById("m");
+    var condition = document.getElementById("c2");
+    var color = document.getElementById("c3");
+    var from = document.getElementById("pf");
+    var to = document.getElementById("pt");
+    var sort = document.getElementById("s");
+
+    var f = new FormData();
+
+    f.append("t",txt.value);
+    f.append("cat",category.value);
+    f.append("b",brand.value);
+    f.append("mo",model.value);
+    f.append("con",condition.value);
+    f.append("col",color.value);
+    f.append("pf",from.value);
+    f.append("pt",to.value);
+    f.append("s",sort.value);
+    f.append("page",x);
+
+    var r = new XMLHttpRequest();
+
+    r.onreadystatechange = function (){
+        if(r.status == 200 && r.readyState == 4){
+            var t = r.responseText;
+            document.getElementById("view_area").innerHTML = t;
+        }
+    }
+
+    r.open("POST","./process/advancedSearchProcess.php",true);
+    r.send(f);
+
+}

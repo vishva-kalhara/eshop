@@ -28,7 +28,7 @@ if (isset($_SESSION["u"])) {
     if ($address_num == 1) {
 
         Database::iud("UPDATE `user_has_address` SET `line1`='" . $line1 . "',
-    `line2`='" . $line2 . "',`postal_code`='" . $pc . "',`city_city_id`='" . $city . "' 
+    `line2`='" . $line2 . "',`postal_code`='" . $pc . "',`city_id`='" . $city . "' 
     WHERE `user_email`='" .$user_email . "'");
     } else {
 

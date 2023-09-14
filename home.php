@@ -20,7 +20,7 @@ require "connection.php";
     <div class="container-fluid">
         <div class="row">
 
-            <?php include "header.php"; ?>
+            <?php include "./header.php"; ?>
 
             <hr />
 
@@ -69,7 +69,7 @@ require "connection.php";
                     </div>
 
                     <div class="col-12 col-lg-2 mt-2 mt-lg-4 text-center text-lg-start">
-                        <a href="advancedSearch.php" class="text-decoration-none link-secondary fw-bold">Advanced</a>
+                        <a href="advanced_search.php" class="text-decoration-none link-secondary fw-bold" >Advanced</a>
                     </div>
 
                 </div>
@@ -182,7 +182,7 @@ require "connection.php";
                 </div>
             </div>
 
-            <?php include "footer.php" ?>
+            <?php include "./footer.php" ?>
         </div>
     </div>
     <script src="./src/script.js"></script>

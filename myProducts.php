@@ -258,7 +258,7 @@ require './connection.php';
                                                                 <div class="col-12">
                                                                     <div class="row g-1">
                                                                         <div class="col-12 col-lg-6 d-grid">
-                                                                            <button class="btn btn-success fw-bold">Update</button>
+                                                                            <button class="btn btn-success fw-bold" onclick="sendId(<?php echo $selected_data['id']; ?>);">Update</button>
                                                                         </div>
                                                                         <div class="col-12 col-lg-6 d-grid">
                                                                             <button class="btn btn-danger fw-bold">Delete</button>

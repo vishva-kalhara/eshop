@@ -2,6 +2,10 @@
 
 <?php
 // session_start();
+// if(!isset($_SESSION["u"])){
+//     session_start();
+    
+// }
 ?>
 
 
@@ -33,7 +37,7 @@
                     $session_data = $_SESSION["u"];
                 ?>
                     <span class="text-lg-start"><b>Welcome </b>
-                    <?php echo $session_data["fname"]." ".$session_data["lname"]; ?>
+                    <?php echo ($session_data["fname"] ??= "")." ".($session_data["lname"] ??= ""); ?>
                 </span> |
                     <span class="text-lg-start fw-bold" onclick="signout();">Sign Out</span> |
                 <?php

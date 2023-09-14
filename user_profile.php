@@ -1,5 +1,5 @@
 <?php
-// session_start();
+ session_start();
 require './connection.php';
 // require './config.php';
 ?>
@@ -17,7 +17,8 @@ require './connection.php';
 </head>
 
 <body>
-    <?php require './header.php';
+    <?php 
+    require './header.php';
 
 
 
@@ -44,7 +45,7 @@ require './connection.php';
 
                             <div class="col-md-3 border-end">
                                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                                    <img src="./resources/img/profile_img/dummy.jpg" class="rounded-circle mt-5" style="width: 150px;" />
+                                    <img src="<?php echo $image_data["path"] ?>" class="rounded-circle mt-5" style="width: 150px;" />
                                     <br />
                                     <span class="fw-bold"><?php echo $details_data["fname"] ?></span>
                                     <span class="fw-bold text-black-50"><?php echo $details_data["email"] ?></span>

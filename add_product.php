@@ -3,6 +3,7 @@
 session_start();
 ?>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,10 +14,11 @@ session_start();
     <link rel="icon" href="./resources/img/logo.svg">
     <title>Add Product</title>
 </head>
+
 <body>
-<div class="container-fluid">
+    <div class="container-fluid">
         <div class="row gy-3">
-            <?php 
+            <?php
 
             // session_start();
 
@@ -78,9 +80,9 @@ session_start();
                                         </div>
 
                                         <div class="col-12">
-                                            <select class="form-select text-center" id="brand"  onchange="loadModel()">
+                                            <select class="form-select text-center" id="brand" onchange="loadModel()">
                                                 <option value="0">Select Category First</option>
-                                                
+
                                             </select>
                                         </div>
 
@@ -97,7 +99,7 @@ session_start();
                                         <div class="col-12">
                                             <select class="form-select text-center" id="model">
                                                 <option value="0">Select Brand First</option>
-                                                
+
                                             </select>
                                         </div>
 
@@ -116,7 +118,7 @@ session_start();
                                             </label>
                                         </div>
                                         <div class="offset-0 offset-lg-2 col-12 col-lg-8">
-                                            <input type="text" class="form-control" id="title"/>
+                                            <input type="text" class="form-control" id="title" />
                                         </div>
                                     </div>
                                 </div>
@@ -178,7 +180,7 @@ session_start();
 
                                                 <div class="col-12">
                                                     <div class="input-group mt-2 mb-2">
-                                                        <input type="text" class="form-control" placeholder="Add new Colour" id="clr_in"/>
+                                                        <input type="text" class="form-control" placeholder="Add new Colour" id="clr_in" />
                                                         <button class="btn btn-outline-primary" type="button" onclick="addColor()" id="button-addon2">+ Add</button>
                                                     </div>
                                                 </div>
@@ -191,7 +193,7 @@ session_start();
                                                     <label class="form-label fw-bold" style="font-size: 20px;">Add Product Quantity</label>
                                                 </div>
                                                 <div class="col-12">
-                                                    <input type="number" class="form-control" value="0" min="0" id="qty"/>
+                                                    <input type="number" class="form-control" value="0" min="0" id="qty" />
                                                 </div>
                                             </div>
                                         </div>
@@ -214,7 +216,7 @@ session_start();
                                                 <div class="offset-0 offset-lg-2 col-12 col-lg-8">
                                                     <div class="input-group mb-2 mt-2">
                                                         <span class="input-group-text">Rs.</span>
-                                                        <input type="text" class="form-control" id="cost"/>
+                                                        <input type="text" class="form-control" id="cost" />
                                                         <span class="input-group-text">.00</span>
                                                     </div>
                                                 </div>
@@ -257,7 +259,7 @@ session_start();
                                                 <div class="col-12 col-lg-8">
                                                     <div class="input-group mb-2 mt-2">
                                                         <span class="input-group-text">Rs.</span>
-                                                        <input type="text" class="form-control" id="dwc"/>
+                                                        <input type="text" class="form-control" id="dwc" />
                                                         <span class="input-group-text">.00</span>
                                                     </div>
                                                 </div>
@@ -271,7 +273,7 @@ session_start();
                                                 <div class="col-12 col-lg-8">
                                                     <div class="input-group mb-2 mt-2">
                                                         <span class="input-group-text">Rs.</span>
-                                                        <input type="text" class="form-control" id="doc"/>
+                                                        <input type="text" class="form-control" id="doc" />
                                                         <span class="input-group-text">.00</span>
                                                     </div>
                                                 </div>
@@ -307,13 +309,13 @@ session_start();
                                         <div class="offset-lg-3 col-12 col-lg-6">
                                             <div class="row">
                                                 <div class="col-4 border border-primary rounded">
-                                                    <img src="./resources/img/product_img/addproductimg.svg" class="img-fluid" style="width: 250px; height: 250px; background-size: cover; background-position: center;" id="i0"/>
+                                                    <img src="./resources/img/product_img/addproductimg.svg" class="img-fluid" style="width: 250px; height: 250px; background-size: cover; background-position: center;" id="i0" />
                                                 </div>
                                                 <div class="col-4 border border-primary rounded">
-                                                    <img src="./resources/img/product_img/addproductimg.svg" class="img-fluid" style="width: 250px; height: 250px; background-size: cover; background-position: center;" id="i1"/>
+                                                    <img src="./resources/img/product_img/addproductimg.svg" class="img-fluid" style="width: 250px; height: 250px; background-size: cover; background-position: center;" id="i1" />
                                                 </div>
                                                 <div class="col-4 border border-primary rounded">
-                                                    <img src="./resources/img/product_img/addproductimg.svg" class="img-fluid" style="width: 250px; height: 250px; background-size: cover; background-position: center;" id="i2"/>
+                                                    <img src="./resources/img/product_img/addproductimg.svg" class="img-fluid" style="width: 250px; height: 250px; background-size: cover; background-position: center;" id="i2" />
                                                 </div>
                                             </div>
                                         </div>
@@ -359,4 +361,5 @@ session_start();
     </div>
 
 </body>
+
 </html>
