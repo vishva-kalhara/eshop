@@ -68,7 +68,7 @@
                             <li><a class="dropdown-item" href="add_product.php">Add New Product</a></li>
                             <li><a class="dropdown-item" href="#">My Sellings</a></li>
                             <li><a class="dropdown-item" href="myProducts.php">My Products</a></li>
-                            <li><a class="dropdown-item" href="#">Watchlist</a></li>
+                            <li><a class="dropdown-item" href="watchlist.php">Watchlist</a></li>
                             <li><a class="dropdown-item" href="#">Purchased History</a></li>
                             <li><a class="dropdown-item" href="#">Messages</a></li>
                             <li><a class="dropdown-item" href="#">Contact Admin</a></li>

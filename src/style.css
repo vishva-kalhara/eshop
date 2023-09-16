@@ -103,3 +103,54 @@ body{
 .pm4{
 	background-image: url("../resources/img/payment_img/paypal_img.png");
 }
+
+.singleProduct{
+    padding-top: 65px;
+    padding-bottom: 145px;
+    padding: 20px;
+}
+
+.mainImg{
+    height: 640px;
+    background-image: url("resourses/empty.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.product-qty{
+    width: 600px;
+    height: 45px;
+    padding: 10px;
+}
+
+.qty-buttons{
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30px;
+    border: solid 1px rgb(72,71,71);
+}
+
+.qty-inc,.qty-dec{
+    width: 100%;
+    height: 50%;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.qty-inc{
+    border-top-right-radius: 5px;
+}
+
+.qty-dec{
+    border-bottom-right-radius: 5px;
+}
+
+.emptyView{
+    height: 400px;
+    background-image: url("resourses/watchlistEmptyView.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}

@@ -155,9 +155,9 @@ require "connection.php";
                                             <div class="wsh-card-devider"></div>
 
                                             <div class="wsh-card-footer">
-                                                <button class="wsh-btn " id="btn-like"><img src="./resources/img/icons/heart.svg" alt="" style="width: 18px;"></button>
+                                                <button onclick="addToWatchlist(<?php echo $cat_product_data['id'];?>);" class="wsh-btn " id="btn-like"><img src="./resources/img/icons/heart.svg" alt="" style="width: 18px;"></button>
                                                 <button class="wsh-btn wsh-elevated-btn">Add to Cart</button>
-                                                <button class="wsh-btn wsh-text-btn" id="btn-buy">Buy</button>
+                                                <a href="<?php echo "singleProductView.php?id=". ($cat_product_data["id"]); ?>" class="wsh-btn wsh-text-btn" id="btn-buy">Buy</a>
                                             </div>
 
 
