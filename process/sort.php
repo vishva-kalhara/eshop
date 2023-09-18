@@ -85,7 +85,7 @@ if ($time != "0" && $qty != "0") {
         $number_of_pages = ceil($product_num / $results_per_page);
 
         $page_results = ($page_num - 1) * $results_per_page;
-        $selected_rs = Database::search("SELECT * FROM `product` WHERE `user_email`='$email' LIMIT $results_per_page OFFSET $page_results");
+        $selected_rs = Database::search("$query  LIMIT $results_per_page OFFSET $page_results");
         $selected_num = $selected_rs->num_rows;
 
         for ($i = 0; $i < $selected_num; $i++) {
@@ -100,14 +100,16 @@ if ($time != "0" && $qty != "0") {
                         <?php
                         $pro_img_rs = Database::search("SELECT * FROM `product_img` WHERE `product_id`='" . $selected_data["id"] . "' LIMIT 1");
                         $pro_img_num = $pro_img_rs->num_rows;
+                        $pro_img_data;
                         if ($pro_img_num == 1) {
                             $pro_img_data = $pro_img_rs->fetch_assoc();
+
                         }
 
 
                         ?>
 
-                        <img src="" class="img-fluid rounded-start" />
+                        <img src="<?php echo ($pro_img_data["img_path"]) ?>" class="img-fluid rounded-start" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -130,7 +132,7 @@ if ($time != "0" && $qty != "0") {
                                 <div class="col-12">
                                     <div class="row g-1">
                                         <div class="col-12 col-lg-6 d-grid">
-                                            <button class="btn btn-success fw-bold">Update</button>
+                                            <button class="btn btn-success fw-bold" onclick="sendId(<?php echo $selected_data['id']; ?>);">Update</button>
                                         </div>
                                         <div class="col-12 col-lg-6 d-grid">
                                             <button class="btn btn-danger fw-bold">Delete</button>

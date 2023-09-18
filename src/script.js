@@ -237,7 +237,11 @@ function loadModel() {
 		}
 	};
 
-	req.open("GET", `./process/load_model.php?b=${sel_brand}&c=${category}`, true);
+	req.open(
+		"GET",
+		`./process/load_model.php?b=${sel_brand}&c=${category}`,
+		true
+	);
 	req.send();
 }
 
@@ -370,11 +374,11 @@ function sort(page) {
 	} else if (document.getElementById("u").checked) condition = "2";
 
 	const frmData = new FormData();
-	frmData.append('s', search.value)
-	frmData.append('t', time)
-	frmData.append('q', qty)
-	frmData.append('c', condition)
-	frmData.append('page', page)
+	frmData.append("s", search.value);
+	frmData.append("t", time);
+	frmData.append("q", qty);
+	frmData.append("c", condition);
+	frmData.append("page", page);
 
 	var req = new XMLHttpRequest();
 
@@ -387,221 +391,279 @@ function sort(page) {
 
 	req.open("POST", "./process/sort.php", true);
 	req.send(frmData);
-
 }
 
 function clearSort() {
-    window.location.reload();
+	window.location.reload();
 }
 
 function sendId(id) {
+	var r = new XMLHttpRequest();
 
-    var r = new XMLHttpRequest();
+	r.onreadystatechange = function () {
+		if (r.status == 200 && r.readyState == 4) {
+			var t = r.responseText;
+			if (t == "success") {
+				window.location = "updateProduct.php";
+			} else {
+				alert(t);
+			}
+		}
+	};
 
-    r.onreadystatechange = function () {
-        if (r.status == 200 && r.readyState == 4) {
-            var t = r.responseText;
-            if (t == "success") {
-                window.location = "updateProduct.php";
-            } else {
-                alert(t);
-            }
-        }
-    }
-
-    r.open("GET", "./process/sendIdProcess.php?id=" + id, true);
-    r.send();
-
+	r.open("GET", "./process/sendIdProcess.php?id=" + id, true);
+	r.send();
 }
+
+
 
 function updateProduct() {
-    var title = document.getElementById("t");
-    var qty = document.getElementById("q");
-    var dwc = document.getElementById("dwc");
-    var doc = document.getElementById("doc");
-    var description = document.getElementById("desc");
-    var image = document.getElementById("imageuploader");
+	var title = document.getElementById("t");
+	var qty = document.getElementById("q");
+	var dwc = document.getElementById("dwc");
+	var doc = document.getElementById("doc");
+	var description = document.getElementById("desc");
+	var image = document.getElementById("imageuploader");
 
-    var f = new FormData();
-    f.append("t", title.value);
-    f.append("q", qty.value);
-    f.append("dwc", dwc.value);
-    f.append("doc", doc.value);
-    f.append("d", description.value);
+	var f = new FormData();
+	f.append("t", title.value);
+	f.append("q", qty.value);
+	f.append("dwc", dwc.value);
+	f.append("doc", doc.value);
+	f.append("d", description.value);
 
-    var file_count = image.files.length;
-    for (var x = 0; x < file_count; x++) {
-        f.append("i" + x, image.files[x]);
-    }
+	var file_count = image.files.length;
+	for (var x = 0; x < file_count; x++) {
+		f.append("i" + x, image.files[x]);
+	}
 
-    var r = new XMLHttpRequest();
+	var r = new XMLHttpRequest();
 
-    r.onreadystatechange = function () {
-        if (r.status == 200 && r.readyState == 4) {
-            var t = r.responseText;
+	r.onreadystatechange = function () {
+		if (r.status == 200 && r.readyState == 4) {
+			var t = r.responseText;
 
-            if (t == "success") {
-                window.location = "myProducts.php";
-            } else if (t == "Invalid Image Count") {
+			if (t == "success") {
+				window.location = "myProducts.php";
+			} else if (t == "Invalid Image Count") {
+				if (
+					confirm("Don't you want to update Product Images?") == true
+				) {
+					window.location = "myProducts.php";
+				} else {
+					alert("Select images.");
+				}
+			} else {
+				alert(t);
+			}
+		}
+	};
 
-                if (confirm("Don't you want to update Product Images?") == true) {
-                    window.location = "myProducts.php";
-                } else {
-                    alert("Select images.");
-                }
-            } else {
-                alert(t);
-            }
-        }
-    }
-
-    r.open("POST", "./process/updateProductProcess.php", true);
-    r.send(f);
+	r.open("POST", "./process/updateProductProcess.php", true);
+	r.send(f);
 }
 
-
-
 function basicSearch(x) {
-    var text = document.getElementById("kw").value;
-    var select = document.getElementById("c").value;
- 
-    var f = new FormData();
-    f.append("t", text);
-    f.append("s", select);
-    f.append("page", x);
+	var text = document.getElementById("kw").value;
+	var select = document.getElementById("c").value;
+
+	var f = new FormData();
+	f.append("t", text);
+	f.append("s", select);
+	f.append("page", x);
 
 	// console.log(text, select, x)
 
+	var r = new XMLHttpRequest();
+
+	r.onreadystatechange = function () {
+		if (r.status == 200 && r.readyState == 4) {
+			var t = r.responseText;
+			document.getElementById("basicSearchResult").innerHTML = t;
+		}
+	};
+
+	r.open("POST", "./process/basic_search.php", true);
+	r.send(f);
+}
+
+function advancedSearch(x) {
+	var txt = document.getElementById("t");
+	var category = document.getElementById("c1");
+	var brand = document.getElementById("b1");
+	var model = document.getElementById("m");
+	var condition = document.getElementById("c2");
+	var color = document.getElementById("c3");
+	var from = document.getElementById("pf");
+	var to = document.getElementById("pt");
+	var sort = document.getElementById("s");
+
+	var f = new FormData();
+
+	f.append("t", txt.value);
+	f.append("cat", category.value);
+	f.append("b", brand.value);
+	f.append("mo", model.value);
+	f.append("con", condition.value);
+	f.append("col", color.value);
+	f.append("pf", from.value);
+	f.append("pt", to.value);
+	f.append("s", sort.value);
+	f.append("page", x);
+
+	var r = new XMLHttpRequest();
+
+	r.onreadystatechange = function () {
+		if (r.status == 200 && r.readyState == 4) {
+			var t = r.responseText;
+			document.getElementById("view_area").innerHTML = t;
+		}
+	};
+
+	r.open("POST", "./process/advancedSearchProcess.php", true);
+	r.send(f);
+}
+
+function changeMainImg(id) {
+	var new_img = document.getElementById("product_img" + id).src;
+	var main_img = document.getElementById("mainImg");
+
+	main_img.style.backgroundImage = "url(" + new_img + ")";
+}
+
+function qty_inc(qty) {
+	var input = document.getElementById("qty_input");
+
+	if (input.value < qty) {
+		var new_value = parseInt(input.value) + 1;
+		input.value = new_value;
+	} else {
+		alert("You have reched to the Maximum");
+		input.value = qty;
+	}
+}
+
+function qty_dec() {
+	var input = document.getElementById("qty_input");
+
+	if (input.value > 1) {
+		var new_value = parseInt(input.value) - 1;
+		input.value = new_value;
+	} else {
+		alert("You have reched to the Minimum");
+		input.value = 1;
+	}
+}
+
+function check_value(qty) {
+	var input = document.getElementById("qty_input");
+
+	if (input.value < 1) {
+		alert("You must add 1 or more");
+		input.value = 1;
+	} else if (input.value > qty) {
+		alert("Insufficieant quantity");
+		input.value = qty;
+	}
+}
+
+function addToWatchlist(id) {
+	var r = new XMLHttpRequest();
+
+	r.onreadystatechange = function () {
+		if (r.status == 200 && r.readyState == 4) {
+			var t = r.responseText;
+			if (t == "Added") {
+				alert("Product added to the watchlist successfully.");
+				window.location.reload();
+			} else if (t == "Removed") {
+				alert("Product removed from watchlist successfully.");
+				window.location.reload();
+			} else {
+				alert(t);
+			}
+		}
+	};
+
+	r.open("GET", "./process/addWatchListProcess.php?id=" + id, true);
+	r.send();
+}
+
+function payNow(pid) {
+
+    var qty = document.getElementById("qty_input").value;
+
     var r = new XMLHttpRequest();
 
     r.onreadystatechange = function () {
         if (r.status == 200 && r.readyState == 4) {
             var t = r.responseText;
-            document.getElementById("basicSearchResult").innerHTML = t;
-        }
-    }
+            var obj = JSON.parse(t);
 
-    r.open("POST", "./process/basic_search.php", true);
-    r.send(f);
-}
+            var umail = obj["umail"];
+            var amount = obj["amount"];
 
-function advancedSearch(x){
+            if (t == "address error") {
+                alert("Please Update Your Profile.");
+                window.location = "userProfile.php";
+            } else {
 
-    var txt = document.getElementById("t");
-    var category = document.getElementById("c1");
-    var brand = document.getElementById("b1");
-    var model = document.getElementById("m");
-    var condition = document.getElementById("c2");
-    var color = document.getElementById("c3");
-    var from = document.getElementById("pf");
-    var to = document.getElementById("pt");
-    var sort = document.getElementById("s");
+                // Payment completed. It can be a successful failure.
+                payhere.onCompleted = function onCompleted(orderId) {
+                    console.log("Payment completed. OrderID:" + orderId);
 
-    var f = new FormData();
+                    window.location = "invoice.php";
+                    // Note: validate the payment and show success or failure page to the customer
+                };
 
-    f.append("t",txt.value);
-    f.append("cat",category.value);
-    f.append("b",brand.value);
-    f.append("mo",model.value);
-    f.append("con",condition.value);
-    f.append("col",color.value);
-    f.append("pf",from.value);
-    f.append("pt",to.value);
-    f.append("s",sort.value);
-    f.append("page",x);
+                // Payment window closed
+                payhere.onDismissed = function onDismissed() {
+                    // Note: Prompt user to pay again or show an error page
+                    console.log("Payment dismissed");
+                };
 
-    var r = new XMLHttpRequest();
+                // Error occurred
+                payhere.onError = function onError(error) {
+                    // Note: show an error page
+                    console.log("Error:" + error);
+                };
 
-    r.onreadystatechange = function (){
-        if(r.status == 200 && r.readyState == 4){
-            var t = r.responseText;
-            document.getElementById("view_area").innerHTML = t;
-        }
-    }
+                // Put the payment variables here
+                var payment = {
+                    "sandbox": true,
+                    "merchant_id": "1223954",    // Replace your Merchant ID
+                    "return_url": "http://localhost/eshop/singleProductView.php?id=" + pid,     // Important
+                    "cancel_url": "http://localhost/eshop/singleProductView.php?id=" + pid,     // Important
+                    "notify_url": "http://sample.com/notify",
+                    "order_id": obj["id"],
+                    "items": obj["item"],
+                    "amount": amount,
+                    "currency": "LKR",
+                    "hash": obj["hash"], // *Replace with generated hash retrieved from backend
+                    "first_name": obj["fname"],
+                    "last_name": obj["lname"],
+                    "email": umail,
+                    "phone": obj["mobile"],
+                    "address": obj["address"],
+                    "city": obj["city"],
+                    "country": "Sri Lanka",
+                    "delivery_address": obj["address"],
+                    "delivery_city": obj["city"],
+                    "delivery_country": "Sri Lanka",
+                    "custom_1": "",
+                    "custom_2": ""
+                };
 
-    r.open("POST","./process/advancedSearchProcess.php",true);
-    r.send(f);
+                // Show the payhere.js popup, when "PayHere Pay" is clicked
+                // document.getElementById('payhere-payment').onclick = function (e) {
+                    payhere.startPayment(payment);
+                // };
 
-}
-
-function changeMainImg(id) {
-
-    var new_img = document.getElementById("product_img" + id).src;
-    var main_img = document.getElementById("mainImg");
-
-    main_img.style.backgroundImage = "url(" + new_img + ")";
-
-}
-
-function qty_inc(qty){
-
-    var input = document.getElementById("qty_input");
-
-    if(input.value < qty){
-
-        var new_value = parseInt(input.value) + 1;
-        input.value = new_value;
-
-    }else{
-
-        alert ("You have reched to the Maximum");
-        input.value = qty;
-
-    }
-
-}
-
-function qty_dec(){
-    var input = document.getElementById("qty_input");
-
-    if(input.value > 1){
-
-        var new_value = parseInt(input.value) - 1;
-        input.value = new_value;
-
-    }else{
-
-        alert ("You have reched to the Minimum");
-        input.value = 1;
-
-    }
-}
-
-function check_value(qty){
-
-    var input = document.getElementById("qty_input");
-
-    if(input.value < 1){
-        alert ("You must add 1 or more");
-        input.value = 1;
-    }else if(input.value > qty){
-        alert ("Insufficieant quantity");
-        input.value = qty;
-    }
-
-}
-
-function addToWatchlist(id){
-
-    var r = new XMLHttpRequest();
-
-    r.onreadystatechange = function(){
-        if(r.status == 200 && r.readyState == 4){
-            var t = r.responseText;
-            if(t == "Added"){
-                alert ("Product added to the watchlist successfully.");
-                window.location.reload();
-            }else if(t == "Removed"){
-                alert ("Product removed from watchlist successfully.");
-                window.location.reload();
-            }else{
-                alert(t);
             }
-            
         }
     }
 
-    r.open("GET","./process/addWatchListProcess.php?id="+id,true);
+    r.open("GET", "./process/payNowProcess.php?id=" + pid + "&qty=" + qty, true);
     r.send();
 
 }

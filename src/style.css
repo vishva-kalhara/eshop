@@ -154,3 +154,11 @@ body{
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+.emptyCart{
+	height: 400px;
+	background-image: url("../resources/img/emptycart.svg");
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}

@@ -71,7 +71,7 @@ if (isset($_SESSION["u"])) {
 
                                 <?php
                                 $watclist_rs = Database::search("SELECT * FROM `watchlist` WHERE 
-                                `users_email`='" . $_SESSION["u"]["email"] . "'");
+                                `user_email`='" . $_SESSION["u"]["email"] . "'");
                                 $watchlist_num = $watclist_rs->num_rows;
 
                                 if ($watchlist_num == 0) {

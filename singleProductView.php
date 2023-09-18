@@ -234,7 +234,7 @@ if (isset($_GET["id"])) {
                                                                         <div class="col-12 mt-5">
                                                                             <div class="row">
                                                                                 <div class="col-4 d-grid">
-                                                                                    <button class="btn btn-success" type="submit" id="payhere-payment">Buy Now</button>
+                                                                                    <button class="btn btn-success" onclick="payNow('<?php echo $pid ?>')"  id="payhere-payment">Pay Now</button>
                                                                                 </div>
                                                                                 <div class="col-4 d-grid">
                                                                                     <button class="btn btn-primary">Add To Cart</button>
@@ -392,6 +392,7 @@ if (isset($_GET["id"])) {
             </div>
 
             <script src="./resources/bootstrap/bootstrap.bundle.js"></script>
+            <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
             <script src="./src/script.js"></script>
 
 
